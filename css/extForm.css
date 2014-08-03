@@ -1,0 +1,14 @@
+.formEl {	width: 323px;
+	text-align: center;	}
+.validIcon {	float: left;	}
+.validIcon img {	width: 20px;
+	height: 20px;	}
+.validWarning {	clear: both;
+	height: 30px;
+	color: darkred;
+	font-family: Tahoma;
+	font-size: 13px;
+	taxt-align: left;	}
+.formField {	width: 350px;	}
+.formField input {	float: left;
+	width: 300px;	}
