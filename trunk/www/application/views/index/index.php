@@ -2,13 +2,19 @@
 <?php
 $countPage=1;
 foreach($posts as $key=>$row)
-{	$date=date_create($row['post_date']);	$day=date_format($date, 'd');
+{
+	$date=date_create($row['post_date']);
+	$day=date_format($date, 'd');
 	$month=$this->monthes(date_format($date, 'm'));
 	$rubrics=array();
 	if($row['rubric'])
 	foreach($row['rubric'] as $key=>$rubric)
-	{		$rubrics[]='<a href="http://'.$_SERVER['HTTP_HOST'].'/index/rubric/'.$rubric['rubric_id'].'">'.$rubric['rubric_name'].'</a>';	}
-	if(is_array($rubrics))$rubrics=implode(',', $rubrics);	$countPage++;	echo ('
+	{
+		$rubrics[]='<a href="http://'.$_SERVER['HTTP_HOST'].'/index/rubric/'.$rubric['rubric_id'].'">'.$rubric['rubric_name'].'</a>';
+	}
+	if(is_array($rubrics))$rubrics=implode(',', $rubrics);
+	$countPage++;
+	echo ('
 	<div class="post">
 		<h1>
 		<a href="http://'.$_SERVER['HTTP_HOST'].'/index/post/'.$row['post_id'].'">
@@ -51,7 +57,8 @@ foreach($posts as $key=>$row)
 		</div>
 	');
 	else
-	{		$prev=$page-1;
+	{
+		$prev=$page-1;
 	echo ('
 		<a id="firstBut" class="activePageBut" href="http://'.$_SERVER['HTTP_HOST'].'/index/index/1">
 			Первая
@@ -62,7 +69,8 @@ foreach($posts as $key=>$row)
 	');
 	}
 	switch($page)
-	{		case '1':
+	{
+		case '1':
 		$start=1;
 		$active=1;
 		break;
@@ -77,22 +85,28 @@ foreach($posts as $key=>$row)
 		default:
 		$start=$page-2;
 		$active=$page;
-	}
+
+	}
 	for($i=$start; $i<($start+5)&&$i<=($postsAmount/$limit); $i++)
-	{		if($i==$active)
-		{			echo ('
+	{
+		if($i==$active)
+		{
+			echo ('
 			<div class="pageBut" id="activePageBut">
 				'.$i.'
 			</div>
 			');
 		}
 		else
-		{			echo ('
+		{
+			echo ('
 			<a class="pageBut" href="http://'.$_SERVER['HTTP_HOST'].'/index/index/'.$i.'">'.$i.'</a>
-			');		}
+			');
+		}
 	}
 	if($page<($postsAmount/$limit))
-	{		$nextPage=$page+1;
+	{
+		$nextPage=$page+1;
 		echo ('
 	 	<a id="nextBut" href="http://'.$_SERVER['HTTP_HOST'].'/index/index/'.$nextPage.'">Следующая</a>
 		<a id="lastBut" href="http://'.$_SERVER['HTTP_HOST'].'/index/index/'.$countPage.'">Последняя</a>
@@ -127,8 +141,11 @@ foreach($posts as $key=>$row)
     </script>
 	<div align="center"><h1>Lonty Рекоммендует</h1></div>
 	<?php
-	foreach($rightPosts as $k => $row)
-	{		echo ('
+    if($rightPosts)
+    {
+        foreach($rightPosts as $k => $row)
+        {
+            echo ('
 		<div class="rightPost">
 			<div class="medImg">
 				<a href="http://'.$_SERVER['HTTP_HOST'].'/index/post/'.$row['post_id'].'">
@@ -139,7 +156,10 @@ foreach($posts as $key=>$row)
 				'.$row['post_name'].'
 			</div>
 		</div><!--rightpost-->
-		');	}
+		');
+        }
+    }
+
 	?>
 	<div class="rightPost">
 		<div class="medImg">

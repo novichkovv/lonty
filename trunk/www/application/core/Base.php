@@ -2,14 +2,15 @@
 function __autoload($className)
 {
     $filename = strtolower($className) . '.php';
-    // определяем класс и находим для него путь
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     $expArr = explode('_', $className);
-    if(empty($expArr[1]) OR $expArr[0] == 'Controller')
+    if((empty($expArr[1]) OR $expArr[0]== 'Controller') && $filename != 'smarty.php' )
     {
         $folder = 'core';
     }
     else
-    {    	if(isset($expArr[1]))
+    {
+    	if(isset($expArr[1]))
     	{
         	switch(strtolower($expArr[1]))
         	{
@@ -31,13 +32,19 @@ function __autoload($className)
             }
         }
     }
-    // путь до класса
+    // пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     $file = SITE_PATH . DS . 'application' . DS . $folder . DS . $filename;
-    // проверяем наличие файла
+
+    if($filename == 'smarty.php')
+    {
+        $file = 'libs' .DS. 'Smarty' .DS. 'libs' .DS. 'Smarty.class.php';
+    }
+
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     if (file_exists($file) == false) {
         return false;
     }
-    // подключаем файл с классом
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     include ($file);
 }
 ?>
