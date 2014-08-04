@@ -1,38 +1,60 @@
 <?php
 class Model
-{	public $recordErrors=array();	public $table;
+{
+	public $recordErrors=array();
+	public $table;
 	public $relations;
     public $attributes;
     public $className;
     public $rules;
 	public function getClassName($name)
-	{		$name=str_replace('_model', '', $name);		$this->modelName=$name;	}	public function selectDb($db)
-	{		mysql_connect(DB_HOST, DB_USER, DB_PASS) or die ("не могу создать соединение");
+	{
+		$name=str_replace('_model', '', $name);
+		$this->modelName=$name;
+	}
+	public function selectDb($db)
+	{
+		mysql_connect(DB_HOST, DB_USER, DB_PASS) or die ("не могу создать соединение");
 		mysql_select_db($db) or die (mysql_error());
 		mysql_query("set character_set_client='utf-8'");
 		mysql_query("set character_set_results='utf-8'");
-		mysql_query("set collation_connection='utf8_general_ci'");	}
+		mysql_query("set collation_connection='utf8_general_ci'");
+	}
 	public function mysqlError($error='')
-	{		if(!$this->table)echo 'No table selected';		echo $error.'<br />';		die(mysql_error());	}
+	{
+		if(!$this->table)echo 'No table selected';
+		echo $error.'<br />';
+		die(mysql_error());
+	}
 	public function setTerm($attributes)
-	{		foreach($attributes as $attribute=>$vol)
-		{			if($attribute==="where")
-			{				$values=array();				foreach($vol as $field=>$value)
-				{					$values[]=$fiels."='".$value."'";				}
+	{
+		foreach($attributes as $attribute=>$vol)
+		{
+			if($attribute==="where")
+			{
+				$values=array();
+				foreach($vol as $field=>$value)
+				{
+					$values[]=$fiels."='".$value."'";
+				}
 				$values=implode(' AND ', $values);
-				$where='WHERE '.$values;			}
+				$where='WHERE '.$values;
+			}
 			elseif($attribute==="whereLike")
-			{				$values=array();
+			{
+				$values=array();
 				foreach($vol as $field=>$value)
 				{
 					$values[]=$fiels." LIKE '".$value."'";
 				}
 				$values=implode(' AND ', $values);
-				$where='WHERE '.$values;			}
+				$where='WHERE '.$values;
+			}
 			elseif($attribute==="order")
 			{
 				$values=implode(', ', $value);
-				$order='ORDER BY '.$values;			}
+				$order='ORDER BY '.$values;
+			}
 			elseif($attribute==="orderDesc")
 			{
 				$values=implode(', ', $value);
@@ -42,12 +64,14 @@ class Model
 			{
 				($value[1])?$values=implode(', ', $value):$values=$value[0];
 				$limit='LIMIT '.$values;
-			}		}
+			}
+		}
 		if($where)$term=$where;
 		if($order)$term.=' '.$order;
 		if($limit)$term.=' '.$limit;
 		return $term;
-	}
+
+	}
 	public function checkRules()
 	{
 		$result=true;
@@ -57,8 +81,11 @@ class Model
 			foreach($this->rules as $field=>$rules)
 			{
 				foreach($rules as $key=>$vol)
-				{					if($errors)break;					if(is_array($vol))
-					{						foreach($vol as $rule=>$value)
+				{
+					if($errors)break;
+					if(is_array($vol))
+					{
+						foreach($vol as $rule=>$value)
 						{
 							switch($rule)
 							{
@@ -75,13 +102,17 @@ class Model
 								case 'preg':
 								if(empty($_POST[$this->modelName][$field]))break;
 								foreach($value as $key=>$regExp)
-								{									if($regExp==='eng')
+								{
+									if($regExp==='eng')
 									{
 										if(!preg_match('/^[A-Za-z]+$/', $_POST[$this->modelName][$field]))
 											$errors[]='Недопустимое значение поля "'.$this->attributes[$field].'": только английские буквы!';
-									}									if($regExp==='engInt')
-									{										if(!preg_match('/^[A-Za-z0-9]+$/', $_POST[$this->modelName][$field]))
-											$errors[]='Недопустимое значение поля "'.$this->attributes[$field].'": только английские буквы и цифры!';									}
+									}
+									if($regExp==='engInt')
+									{
+										if(!preg_match('/^[A-Za-z0-9]+$/', $_POST[$this->modelName][$field]))
+											$errors[]='Недопустимое значение поля "'.$this->attributes[$field].'": только английские буквы и цифры!';
+									}
 									if($regExp==='rusSymb')
 									{
 										if(!preg_match('/^[^А-Яа-я]+$/', $_POST[$this->modelName][$field]))
@@ -123,42 +154,58 @@ class Model
 			}
 		}
 		if($errors)
-		{			print_r($errors);
+		{
+			print_r($errors);
 			$this->recordErrors=$errors;
 			$result=false;
 		}
 		return $result;
 	}
 	public function selectTable($tableName)
-	{		$this->table=$tableName;	}
+	{
+		$this->table=$tableName;
+	}
 	public function selectAll($table='', $show=false)
-	{		if(!$table)$table=$this->table;		$query="SELECT * FROM $table";
-		return $this->getAll($query, $show);	}
+	{
+		if(!$table)$table=$this->table;
+		$query="SELECT * FROM $table";
+		return $this->getAll($query, $show);
+	}
 	function getAll($query,$show=false)
-	{		$res=mysql_query($query) or die($this->mysqlError($query));
+	{
+		$res=mysql_query($query) or die($this->mysqlError($query));
 		while($aRow=mysql_fetch_assoc($res))
 		{
 			$row[]=$aRow;
 		}
-		return $row;	}
+		return $row;
+	}
 	function getRow($query,$show=false)
-	{		$res=mysql_query($query) or die($this->mysqlError($query));
+	{
+		$res=mysql_query($query) or die($this->mysqlError($query));
 		$row=mysql_fetch_row($res);
-		return $row[key];	}
+		return $row;
+	}
 	public function selectAllBy($attributes, $table='')
-	{		$query="SELECT * FROM $table ".$this->term($attributes);
+	{
+		$query="SELECT * FROM $table ".$this->term($attributes);
 		$res=mysql_query($query) or die($this->mysqlError($query));
-		return mysql_fetch_array($res);	}
+		return mysql_fetch_array($res);
+	}
 	public function selectAllById($id, $table='')
-	{		$query="SELECT * FROM $table WHERE key='".$id."'";
+	{
+		$query="SELECT * FROM $table WHERE key='".$id."'";
 		$res=mysql_query($query) or die($this->mysqlError($query));
-		return mysql_fetch_array($res);	}
+		return mysql_fetch_array($res);
+	}
 	public function insert($table='')
-	{		if(!$table)$table=$this->table;
+	{
+		if(!$table)$table=$this->table;
 		$this->rules=$this->rules();
 		$this->attributes=$this->attributes();
 		if($this->checkRules())
-		{			foreach($_POST[$this->modelName] as $key=>$value)
+		{
+			foreach($_POST[$this->modelName] as $key=>$value)
 			{
 		    	$data[]=$key."='".$this->safetyCheck($value)."'";
 			}
@@ -166,11 +213,14 @@ class Model
 			$query="INSERT INTO $table SET $data ";
 			//echo $query;
 			mysql_query($query) or $this->mysqlError();
-		}	}
+		}
+	}
 	public function safetyCheck($data)
-	{		$data = trim($data);
+	{
+		$data = trim($data);
 		$data = mysql_real_escape_string($data);
-		return($data);	}
+		return($data);
+	}
 	public function update($term,$table='')
 	{
 		if(!$table)$table=$this->table;
@@ -189,7 +239,9 @@ class Model
 		}
 	}
 	public function fields()
-	{	}
+	{
+	}
 	public function attributes(){}
-	public function rules(){}}
+	public function rules(){}
+}
 ?>
