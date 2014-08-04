@@ -1,11 +1,13 @@
 <?php
 class admin_controller extends controller
 {
-	public function index($vars=array())
+	public function index($vars='')
 	{
-		$this->styles=array('admin');
+		$this->styles=array('admin', 'jee');
 		$this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
-		$this->view('index');
+		$model = new posts_model();
+		$posts = $model->getPostsList();
+		$this->t->assign('posts', $posts);
 	}
 	public function addpost($vars = '')
 	{		$post_model = new posts_model();
@@ -79,7 +81,7 @@ class admin_controller extends controller
 			foreach($rubs as $key=>$vol)
 			{				$_POST['postrubrics']=$vol;
 				$_POST['postrubrics']['post_id']=$id;
-				if(!array_key_exists($vol['rubric_id'] => $post['rubric'])
+				if(!array_key_exists($vol['rubric_id'], $post['rubric']))
 				$postrubrics->insert();			}
 			header('location: ');
 		}

@@ -75,6 +75,31 @@ class posts_model extends Model
 		';
 		$row = $this->getAll($query);
 		return($row);	}
+	public function getPostsList()
+	{
+		$query = '
+		SELECT
+            COUNT(pa.passage_id) as amount,
+			p.post_id as id,
+			p.post_date as date,
+			p.post_name as name,
+			GROUP_CONCAT(DISTINCT r.rubric_name ORDER BY r.rubric_name ASC SEPARATOR ", ") AS rubrics
+			FROM
+				posts p
+			LEFT JOIN
+				passages pa
+				ON pa.post_id = p.post_id
+			LEFT JOIN
+				postrubrics pr
+				ON pr.post_id = p.post_id
+			LEFT JOIN
+				rubrics r
+				ON pr.rubric_id = r.rubric_id
+			GROUP BY p.post_id
+
+		';
+		$row = $this->getAll($query);
+		return $row;	}
 	/*public function rules()
 	{		return array('posts_name'=>array('require'));	} */
 }

@@ -78,6 +78,7 @@ Class Router
 
         // Создаём экземпляр контроллера
         $class = $controller.'_Controller';
+
         $controller = new $class($this->registry);
 
         // Если экшен не существует - 404
