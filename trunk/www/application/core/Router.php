@@ -5,45 +5,45 @@ Class Router
     private $path;
     private $args = array();
 
-    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    // получаем хранилище
     function __construct($registry) {
         $this->registry = $registry;
     }
 
-    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    // задаем путь до папки с контроллерами
     function setPath($path) {
         $path = trim($path, '/\\');
         $path .= DS;
-        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+        // если путь не существует, сигнализируем об этом
         if (is_dir($path) == false) {
             throw new Exception ('Invalid controller path: `' . $path . '`');
         }
         $this->path = $path;
     }
 
-    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+    // определение контроллера и экшена из урла
     private function getController(&$file, &$controller, &$action, &$args) {
         $route = (empty($_GET['route'])) ? '' : $_GET['route'];
         unset($_GET['route']);
         if (empty($route)) {
             $route = 'index';
         }
-        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        // Получаем части урла
         $route = trim($route, '/\\');
         $parts = explode('/', $route);
 
-        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        // Находим контроллер
         $cmd_path = $this->path;
         foreach ($parts as $part) {
             $fullpath = $cmd_path . $part;
-            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+            // Проверка существования папки
             if (is_dir($fullpath)) {
                 $cmd_path .= $part . DS;
                 array_shift($parts);
                 continue;
             }
 
-            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+            // Находим файл
             if (is_file($fullpath . '.php')) {
                 $controller = $part;
                 array_shift($parts);
@@ -51,12 +51,12 @@ Class Router
             }
         }
 
-        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ index
+        // если урле не указан контролер, то испольлзуем поумолчанию index
         if (empty($controller)) {
             $controller = 'index';
         }
 
-        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        // Получаем экшен
         $action = array_shift($parts);
         if (empty($action)) {
             $action = 'index';
@@ -66,31 +66,30 @@ Class Router
     }
 
     function start() {
-        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        // Анализируем путь
         $this->getController($file, $controller, $action, $args);
-        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ 404
+        // Проверка существования файла, иначе 404
         if (is_readable($file) == false) {
             die ('404 Not Found');
         }
-        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+
+        // Подключаем файл
         include ($file);
 
-        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        // Создаём экземпляр контроллера
         $class = $controller.'_Controller';
-        //require_once('Z:\home\lonty.sru\www\libs\Smarty\libs\Smarty.class.php');
 
         $controller = new $class($this->registry);
-        $controller->t = new smarty();
-        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - 404
+        $controller->view($action);
+        // Если экшен не существует - 404
         if (is_callable(array($controller, $action)) == false) {
             die ('404 Not Found');
         }
-
         $controller->args=$args;
-        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
-        //echo $action;
+        // Выполняем экшен
+        $controller->t->assign('get', $args);
         $controller->$action($args);
-        //$controller->view('index');
+        $controller->t->display('template.tpl');
     }
 }
 ?>

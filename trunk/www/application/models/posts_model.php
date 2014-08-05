@@ -8,15 +8,8 @@ class posts_model extends Model
 		$this->selectDb('lonty');
 	}
 
-    function countPosts($term = false)
-    {
-        $query = 'SELECT COUNT(*) FROM posts '.($term ? $term : '');
-        $count = $this->getRow($query);
-        return $count[0];
-    }
 	function getPosts($limitStart, $limit)
-	{
-		$query="SELECT * FROM
+	{		$query="SELECT * FROM
 			 		(SELECT * FROM posts
 				LIMIT $limitStart, $limit) p
 			 	LEFT JOIN
@@ -31,11 +24,9 @@ class posts_model extends Model
 				ORDER BY p.post_date DESC
 			 	";
 		$row=$this->getAll($query, true);
-		return($row);
-	}
+		return($row);	}
     function getPost($id)
-    {
-    	$query = '
+    {    	$query = '
     	SELECT
     		p.post_name as name,
     		p.post_epilog as epilog,
@@ -62,11 +53,9 @@ class posts_model extends Model
  		WHERE p.post_id = "'.$id.'"
     	';
     	$row = $this->getAll($query);
-		return($row);
-    }
+		return($row);    }
 	function getRightPosts($not)
-	{
-		$query = '
+	{		$query = '
 		SELECT
 			p.post_id,
 			p.post_name,
@@ -85,8 +74,7 @@ class posts_model extends Model
 		LIMIT 5
 		';
 		$row = $this->getAll($query);
-		return($row);
-	}
+		return($row);	}
 	public function getPostsList()
 	{
 		$query = '
@@ -95,16 +83,16 @@ class posts_model extends Model
 			p.post_id as id,
 			p.post_date as date,
 			p.post_name as name,
-			GROUP_CONCAT(DISTINCT r.rubric_name ORDER BY r.rubric_name ASC SEPARATOR ", ") AS rubrics
+            GROUP_CONCAT(DISTINCT r.rubric_name ORDER BY r.rubric_name ASC SEPARATOR ", ") AS rubrics
 			FROM
 				posts p
-			LEFT JOIN
+			JOIN
 				passages pa
 				ON pa.post_id = p.post_id
-			LEFT JOIN
+			JOIN
 				postrubrics pr
 				ON pr.post_id = p.post_id
-			LEFT JOIN
+			JOIN
 				rubrics r
 				ON pr.rubric_id = r.rubric_id
 			GROUP BY p.post_id
@@ -113,8 +101,6 @@ class posts_model extends Model
 		$row = $this->getAll($query);
 		return $row;	}
 	/*public function rules()
-	{
-		return array('posts_name'=>array('require'));
-	} */
+	{		return array('posts_name'=>array('require'));	} */
 }
 ?>

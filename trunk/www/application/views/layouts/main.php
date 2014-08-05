@@ -24,7 +24,8 @@
 	<div class="contentArea">
 	    <div class="page">
 	    	<div class="content">
-<?php include ($contentPage);?>
+<?php //include ($contentPage);
+?>
 			</div>
 		</div>
 	</div>
