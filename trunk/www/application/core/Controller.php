@@ -6,7 +6,7 @@ Abstract Class Controller {
     protected $layouts; // шаблон
     protected $styles;
     protected $scripts;
-    protected $title;
+    public $title;
     protected $meta;
     public $action;
     public $vars = array();
@@ -19,7 +19,8 @@ Abstract Class Controller {
         $this->layouts='main';
     }
     function view($name='', $vars='')
-    {    	$arr=explode('_', get_class($this));
+    {
+    	$arr=explode('_', get_class($this));
     	$view=$arr[0];
         /*$pathLayout = SITE_PATH . DS . 'application' . DS . 'views' . DS . 'layouts' . DS . $this->layouts . '.php';
         $contentPage = SITE_PATH . DS . 'application' . DS . 'views' . DS . $view . DS . $name . '.php';
@@ -48,34 +49,54 @@ Abstract Class Controller {
 
 		$this->style();
         $this->scripts();
-       // $this->t->display('template.tpl');
+        //$this->t->display('template.tpl');
     }
     public function style()
-    {    	if($this->styles)
-    	{    		$style = array();    		foreach($this->styles as $key=>$filename)
-    		{    			$style[] = '<link rel="stylesheet" type="text/css" href="http://'.$_SERVER['HTTP_HOST'].'/css/'.$filename.'.css" />';    		}
-    		if($style)$styles = implode('/n', $style);
-    		$this->t->assign('styles', $styles);
+    {
+    	if($this->styles)
+    	{
+    		$style = array();
+    		foreach($this->styles as $key=>$filename)
+    		{
+    			$style[] = '<link rel="stylesheet" type="text/css" href="http://'.$_SERVER['HTTP_HOST'].'/css/'.$filename.'.css" />';
+    		}
+    		$this->t->assign('styles', $style);
 
-    	}    }
+
+    	}
+    }
     public function scripts()
-    {    	if($this->scripts)
-    	{    		foreach($this->scripts as $key=>$filename)
-    		{    			$scripts[] = '
+    {
+    	if($this->scripts)
+    	{
+    		foreach($this->scripts as $key=>$filename)
+    		{
+    			$scripts[] = '
     			<script type="text/javascript" charset="utf-8" src="http://'.$_SERVER['HTTP_HOST'].'/js/'.$filename.'.js">
     			</script>
-    			';    		}
-    		if($scripts)$scipts = implode('', $scripts);
-    		$this->t->assign($scripts);    	}    }
+    			';
+    		}
+    		$this->t->assign('scripts',$scripts);
+    	}
+    }
     public function meta()
-    {    	if($this->meta)
-    	{    		foreach($this->meta as $type=>$data)
-    		{    			foreach($data as $name=>$content)
-    			{    				echo ('
-    				<meta '.$type.'="'.$name.'" content="'.$content.'">
-    				');    			}    		}    	}    }
+    {
+    	if($this->meta)
+    	{
+            $meta = array();
+    		foreach($this->meta as $type=>$data)
+    		{
+    			foreach($data as $name=>$content)
+    			{
+    	            $meta[] = '<meta '.$type.'="'.$name.'" content="'.$content.'">';
+    			}
+    		}
+            $this->t->assign('meta', $meta);
+    	}
+    }
     protected function monthes($month)
-    {    	$monthes=array('01'=>'января',
+    {
+    	$monthes=array('01'=>'января',
     				   '02'=>'февраля',
     				   '03'=>'марта',
     				   '04'=>'апреля',
@@ -87,7 +108,8 @@ Abstract Class Controller {
     				   '10'=>'октября',
     				   '11'=>'ноября',
     				   '21'=>'декабря');
-    	return $monthes[$month];    }
+    	return $monthes[$month];
+    }
     abstract function index($args='');
 }
 ?>
