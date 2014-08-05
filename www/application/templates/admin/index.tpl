@@ -1,25 +1,25 @@
 <div class="admin-panel">
 	<a class="button-link" href="{$smarty.const.SITE_DIR}admin/addpost/">
-		Добавить пост
+		Р”РѕР±Р°РІРёС‚СЊ РїРѕСЃС‚
 	</a>
 </div>
 <div class="post-list">
 	<table>
 		<tr>
 			<th>
-				№
+				в„–
 			</th>
 			<th>
-				Заголовок
+				Р—Р°РіРѕР»РѕРІРѕРє
 			</th>
 			<th>
-				Кол-во абзацев
+				РђР±Р·Р°С†РµРІ
 			</th>
 			<th>
-				Рубрики
+				Р СѓР±СЂРёРєРё
 			</th>
 			<th>
-				Дата
+				Р”Р°С‚Р°
 			</th>
 		</tr>
 	{foreach from=$posts item=item}
@@ -28,7 +28,7 @@
 				{$item.id}
 			</td>
 			<td>
-				{$item.name}
+				<a href="{$smarty.const.SITE_DIR}admin/editPost/{$item.id}">{$item.name}</a>
 			</td>
 			<td>
 				{$item.amount}
