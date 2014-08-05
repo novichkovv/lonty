@@ -5,7 +5,9 @@
   	{$title}
   </title>
   	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-  	{$meta}
+    {foreach from=$meta item=meta}
+        {$meta}
+    {/foreach}
   	<link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/css/style.css" />
     {$style}
     {$scripts}

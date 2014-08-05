@@ -1,10 +1,10 @@
 <?php
-define ('DS', DIRECTORY_SEPARATOR); // разделитель для путей к файлам
+define ('DS', DIRECTORY_SEPARATOR); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 $sitePath = realpath($_SERVER['DOCUMENT_ROOT'] . DS);
-define ('SITE_PATH', $sitePath); // путь к корневой папке сайта
-define ('SITE_DIR', str_replace('www.','http://',$_SERVER['HTTP_HOST']).'/');
+define ('SITE_PATH', $sitePath); // пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+define ('SITE_DIR', 'http://'.$_SERVER['HTTP_HOST'].'/');
 define ('SMARTY_DIR', SITE_PATH.DS.'libs'.DS.'Smarty'.DS.'libs'.DS);
-// для подключения к бд
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_HOST', 'localhost');
