@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-05 19:07:52
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-06 18:51:20
          compiled from "Z:\home\lonty.sru\www\application\templates\template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3058753df9cb4d05336-32133670%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0503a66ba8fd7fa7d81f8f194553ce7fa9743714' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\template.tpl',
-      1 => 1407249222,
+      1 => 1407336677,
       2 => 'file',
     ),
   ),
@@ -25,6 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'item' => 0,
     'scripts' => 0,
     'template_dir' => 0,
+    'fof' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -72,8 +73,15 @@ images/main/logo.png" /></a>
 	<div class="contentArea">
 	    <div class="page">
 	    	<div class="content">
+    		<?php if ($_smarty_tpl->tpl_vars['template_dir']->value==$_smarty_tpl->tpl_vars['fof']->value) {?>
+	    		<div align="center">
+	    			<h1>Ошибка 404</h1>
+	    			</h1>Страница не существует!</h1>
+	    		</div>
+			<?php } else { ?>
 				<?php echo $_smarty_tpl->getSubTemplate ($_smarty_tpl->tpl_vars['template_dir']->value, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
+			<?php }?>
 			</div>
 		</div>
 	</div>

@@ -28,7 +28,14 @@
 	<div class="contentArea">
 	    <div class="page">
 	    	<div class="content">
+    		{if $template_dir eq $fof}
+	    		<div align="center">
+	    			<h1>Ошибка 404</h1>
+	    			</h1>Страница не существует!</h1>
+	    		</div>
+			{else}
 				{include file=$template_dir}
+			{/if}
 			</div>
 		</div>
 	</div>

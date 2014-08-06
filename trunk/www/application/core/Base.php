@@ -2,7 +2,7 @@
 function my_autoloader($className)
 {
     $filename = strtolower($className) . '.php';
-    // определяем класс и находим для него путь
+    // РѕРїСЂРµРґРµР»СЏРµРј РєР»Р°СЃСЃ Рё РЅР°С…РѕРґРёРј РґР»СЏ РЅРµРіРѕ РїСѓС‚СЊ
     $expArr = explode('_', $className);
     if(empty($expArr[1]) OR $expArr[0] == 'Controller')
     {
@@ -33,13 +33,13 @@ function my_autoloader($className)
     }
 
 
-    // путь до класса
+    // РїСѓС‚СЊ РґРѕ РєР»Р°СЃСЃР°
     $file = SITE_PATH . DS . 'application' . DS . $folder . DS . $filename;
-    // проверяем наличие файла
+    // РїСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ С„Р°Р№Р»Р°
     if (file_exists($file) == false) {
         return false;
     }
-    // подключаем файл с классом
+    // РїРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р» СЃ РєР»Р°СЃСЃРѕРј
     include ($file);
 }
 spl_autoload_register ('my_autoloader');
