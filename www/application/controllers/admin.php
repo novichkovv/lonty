@@ -3,15 +3,19 @@ class admin_controller extends controller
 {
 	public function index($vars='')
 	{
-		$this->styles=array('admin','ewefrfwf','efwarg');
-        $this->scripts=array('admin','ewefrfwf','efwarg');
+		$this->styles=array('admin');
+        $this->scripts=array();
 		$this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
   		$model = new posts_model;
   		$posts = $model->getPostsList();
   		$this->t->assign('posts', $posts);
 	}
-	public function addpost($vars = '')
-	{
+	public function addpost()
+	{		$this->styles=array('admin');
+        $this->scripts=array('addpost');
+		$rubrics_model=new rubrics_model();
+		$rubrics = $rubrics_model->selectAll();
+		$this->t->assign('rubrics', $rubrics);
 		$post_model = new posts_model();
 		if(isset($vars[0]))$id = $vars[0];
 		if(isset($id))
@@ -36,7 +40,7 @@ class admin_controller extends controller
 		}
 		$this->scripts=array('jquery', 'ajaxUpload', 'addpost');
 		$this->styles=array('admin');
-		$rubrics=new rubrics_model();
+
 		if(isset($_POST['addPostButton']))
 		{
 			$passage=new passages_model();
@@ -109,14 +113,8 @@ class admin_controller extends controller
 			}
 			header('location: ');
 		}
-		$rubs=$rubrics->selectAll();
 		$postInfo = array();
-		if(isset($id))
-		$this->view('addpost', array('rubrics'=>$rubs,
-									 'post' => $post,
-									 'id' => $id
-									 ));
-		else $this->view('addpost', array('rubrics'=>$rubs));
+
 	}
 	public function loadpic($vars = '')
 	{
@@ -179,5 +177,13 @@ class admin_controller extends controller
 		imagejpeg($img_o, SITE_PATH. DS. 'images'.DS.'pictures'.DS.'big'.DS.'21'.DS.'48.jpg');
 
 	}
+	public function addRubricAction($vars='')
+	{		exit;	}
+	public function ajax()
+	{		switch($_GET['action'])
+		{			case "addRubricAction":
+			echo 'kdkkd';
+			exit;
+			break;		}	}
 }
 ?>

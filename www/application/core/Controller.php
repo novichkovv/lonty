@@ -45,6 +45,7 @@ Abstract Class Controller {
 		$this->t->config_dir = 'Z:/home/lonty.sru/www/application/configs/';
 		$this->t->cache_dir = 'Z:/home/lonty.sru/www/application/cache/';
         $template_dir = SITE_PATH.DS.'application'.DS.'templates'.DS.$view.DS.$name.'.tpl';
+        $this->t->assign('fof', SITE_PATH.DS.'application'.DS.'templates'.DS.$view.DS.'not_found.tpl');
 		$this->t->assign('template_dir', $template_dir);
 
 		$this->style();
@@ -110,6 +111,8 @@ Abstract Class Controller {
     				   '21'=>'декабря');
     	return $monthes[$month];
     }
+    function not_found()
+    {    }
     abstract function index($args='');
 }
 ?>
