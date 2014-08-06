@@ -11,107 +11,107 @@ class admin_controller extends controller
   		$this->t->assign('posts', $posts);
 	}
 	public function addpost()
-	{		$this->styles=array('admin');
-        $this->scripts=array('addpost');
-		$rubrics_model=new rubrics_model();
+	{
+		$this->styles=array('admin');
+        $this->scripts=array('jquery', 'ajaxUpload', 'addpost');
+
+		$rubrics_model=new rubrics_model();
 		$rubrics = $rubrics_model->selectAll();
 		$this->t->assign('rubrics', $rubrics);
-		$post_model = new posts_model();
-		if(isset($vars[0]))$id = $vars[0];
-		if(isset($id))
-		{
-			$item = $post_model->getPost($id);
-			$post = array();
-			foreach($item as $k=>$row)
-			{
-				foreach($row as $key => $vol)
-				{
-					if($key=='name' || $key=='epilog' || $key=='prolog' || $key=='date')
-						$post[$key] = $vol;
-					if($key=='header' || $key=='img' || $key=='text' || $key=='pa_id' || $key=='main')
-					 {
-					 	$post['passage'][$row['pa_id']][$key] = $vol;
-	                 }
-					if($key=='rubric_id')
-						$post['rubric'][$row['rubric_id']] = $row['rubric_name'];
 
-				}
-			}
-		}
-		$this->scripts=array('jquery', 'ajaxUpload', 'addpost');
-		$this->styles=array('admin');
+		$post_model = new posts_model();
+
+//		if(isset($id))
+//		{
+//			$item = $post_model->getPost($id);
+//			$post = array();
+//			foreach($item as $k=>$row)
+//			{
+//				foreach($row as $key => $vol)
+//				{
+//					if($key=='name' || $key=='epilog' || $key=='prolog' || $key=='date')
+//						$post[$key] = $vol;
+//					if($key=='header' || $key=='img' || $key=='text' || $key=='pa_id' || $key=='main')
+//					 {
+//					 	$post['passage'][$row['pa_id']][$key] = $vol;
+//	                 }
+//					if($key=='rubric_id')
+//						$post['rubric'][$row['rubric_id']] = $row['rubric_name'];
+//
+//				}
+//			}
+//		}
+
 
 		if(isset($_POST['addPostButton']))
 		{
-			$passage=new passages_model();
-			$postrubrics=new postrubrics_model();
-			if(!$id)
-			{
+
+
 				$_POST['posts']['post_date']=date('Y-m-d H:i:s');
 				$post_model->insert();
 				$id=mysql_insert_id();
-			}
-			else
-			{
-				$query = $post_model->update("WHERE post_id = '$id'");
-			}
-			$passages=$_POST['passages'];
-			foreach($passages as $key=>$vol)
-			{
-				$_POST['passages']=$vol;
-				$_POST['passages']['post_id']=$id;
-				if(!isset($vol['passage_id']))
-				{
-					$passage->insert();
-					$passage_id=mysql_insert_id();
-				}
-				else
-				{
-					$passage_id = $vol['passage_id'];
-					$passage->update("WHERE passage_id = '$passage_id'");
-				}
 
-				$file=SITE_PATH. DS. 'images'.DS.'pictures'.DS.'temp'.DS.'temp'.$_POST['temp'].$key.'.'.$_POST['passages']['passage_imgtype'];
-				if(file_exists($file))
-				{
-					$image=new image;
-					$image->load($file);
-					$folder=SITE_PATH.DS.'images'.DS.'pictures'.DS.'big'.DS.$id.DS.'';
-
-					if(!file_exists($folder))
-						mkdir($folder, 0777, true);
-					copy($file, $folder.$passage_id.'.'.$_POST['passages']['passage_imgtype']);
-					$folder=SITE_PATH.DS.'images'.DS.'pictures'.DS.'cut'.DS.$id.DS.'';
-					if(!file_exists($folder))
-						mkdir($folder, 0777, true);
-					if($_POST['passages']['passage_imgtype'] == 'jpg')
-					{
-						$image->resizeToWidth(570);
-						$image->crop(192);
-						$image->save($folder.$passage_id.'.'.$_POST['passages']['passage_imgtype']);
-					}
-
-
-				}
-			}
-			$rubs=$_POST['postrubrics'];
-			if($vars[0])
-			{
-				foreach($post['rubric'] as $rubric_id=>$vol)
-				{
-					if(!in_array($rubric_id, $_POST['postrubrics']))
-						$postrubrics->deletePostRubric($vars[0], $rubric_id);
-
-				}
-			}
+//			else
+//			{
+//				$query = $post_model->update("WHERE post_id = '$id'");
+//			}
+//			$passages=$_POST['passages'];
+//			foreach($passages as $key=>$vol)
+//			{
+//				$_POST['passages']=$vol;
+//				$_POST['passages']['post_id']=$id;
+//				if(!isset($vol['passage_id']))
+//				{
+//					$passage->insert();
+//					$passage_id=mysql_insert_id();
+//				}
+//				else
+//				{
+//					$passage_id = $vol['passage_id'];
+//					$passage->update("WHERE passage_id = '$passage_id'");
+//				}
+//
+//				$file=SITE_PATH. DS. 'images'.DS.'pictures'.DS.'temp'.DS.'temp'.$_POST['temp'].$key.'.'.$_POST['passages']['passage_imgtype'];
+//				if(file_exists($file))
+//				{
+//					$image=new image;
+//					$image->load($file);
+//					$folder=SITE_PATH.DS.'images'.DS.'pictures'.DS.'big'.DS.$id.DS.'';
+//
+//					if(!file_exists($folder))
+//						mkdir($folder, 0777, true);
+//					copy($file, $folder.$passage_id.'.'.$_POST['passages']['passage_imgtype']);
+//					$folder=SITE_PATH.DS.'images'.DS.'pictures'.DS.'cut'.DS.$id.DS.'';
+//					if(!file_exists($folder))
+//						mkdir($folder, 0777, true);
+//					if($_POST['passages']['passage_imgtype'] == 'jpg')
+//					{
+//						$image->resizeToWidth(570);
+//						$image->crop(192);
+//						$image->save($folder.$passage_id.'.'.$_POST['passages']['passage_imgtype']);
+//					}
+//
+//
+//				}
+//			}
+			$rubrics=$_POST['postrubrics'];
+//			if($vars[0])
+//			{
+//				foreach($post['rubric'] as $rubric_id=>$vol)
+//				{
+//					if(!in_array($rubric_id, $_POST['postrubrics']))
+//						$postrubrics->deletePostRubric($vars[0], $rubric_id);
+//
+//				}
+//			}
 			foreach($rubs as $key=>$vol)
 			{
 				$_POST['postrubrics']=$vol;
-				$_POST['postrubrics']['post_id']=$id;
-				if(!array_key_exists($vol['rubric_id'], $post['rubric']))
+//				$_POST['postrubrics']['post_id']=$id;
+//				if(!array_key_exists($vol['rubric_id'], $post['rubric']))
 				$postrubrics->insert();
 			}
-			header('location: ');
+			header('location: '.SITE_DIR.'admin/editpost/'.$id);
 		}
 		$postInfo = array();
 
@@ -177,13 +177,28 @@ class admin_controller extends controller
 		imagejpeg($img_o, SITE_PATH. DS. 'images'.DS.'pictures'.DS.'big'.DS.'21'.DS.'48.jpg');
 
 	}
-	public function addRubricAction($vars='')
-	{		exit;	}
+
 	public function ajax()
-	{		switch($_GET['action'])
-		{			case "addRubricAction":
-			echo 'kdkkd';
-			exit;
-			break;		}	}
+	{
+		switch($_REQUEST['action'])
+		{
+			case "addRubrics":
+                $model = new rubrics_model();
+                $model -> insert();
+                $id = mysql_insert_id();
+                echo ('
+                <tr>
+                    <td>
+                        <input name="postrubrics[][rubric_id]" type="checkbox" value="'.$id.'">
+                    </td>
+                    <td>
+                        '.$_POST['rubrics']['rubric_name'].'
+                    </td>
+                </tr>
+                ');
+                exit;
+			break;
+		}
+	}
 }
 ?>

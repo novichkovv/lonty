@@ -1,38 +1,59 @@
 $j=jQuery.noConflict();
 $j(document).ready(function()
-{	loadPicture();
+{
+	loadPicture();
 	addPassage();
-	addRubricForm();});
+	addRubricForm();
+});
 function addRubricForm()
-{	$j(".addRubric").click(function(event)
-	{		var id = $j(this).attr('id');
-		var new_id = parseInt(id) + 1;		$j(".rubrics").append('\
+{
+	$j(".addRubric").click(function(event)
+	{
+		var id = $j(this).attr('id');
+		var new_id = parseInt(id) + 1;
+		$j(".rubrics").append('\
 		<div class="addRubricForm">\
-			<form name="rubric" method="post">\
 				<label>Введите название рубрики</label><br />\
 				<input id="addRubricInput"  name="rubrics[rubric_name]" type="text" value="" />\
 				<div class="cansAddRubric" class="smallButton">Отменить</div>\
 				<div id="addRubricButton" class="smallButton">Сохранить</div>\
-			</form>\
 		</div>\
 		');
 		addRubric();
 		$j(".addRubric").css('display','none');
 		$j(".cansAddRubric").click(function()
-		{			$j(".addRubricForm").remove();
-			$j(".addRubric").css('display','block');		});	});}
-function addRubric()
-{	$j("#addRubricButton").click(function()
-	{		alert(location.hostname + "/admin/ajax/");		var rubric = $j(".addRubricInput").val();		$j.ajax(
 		{
-			url: location.hostname + "/admin/ajax/",
-			data: "addRubricAction/",
+			$j(".addRubricForm").remove();
+			$j(".addRubric").css('display','block');
+            $j("#addRubricButton").unbind('click');
+		});
+	});
+}
+
+function addRubric()
+{
+	$j("#addRubricButton").click(function()
+	{
+		var data = {
+            'rubrics[rubric_name]' : $j("#addRubricInput").val(),
+            'action' : 'addRubrics'
+        };
+		var rubric = $j(".addRubricInput").val();
+		$j.ajax(
+		{
+			url: '../ajax/',
+			data: data,//'action=addRubrics&rubrics='+$j("#addRubricInput").val(),
+            type: "post",
 			success: function(result)
-			{				alert(result);
+			{
 				$j('#rubricsTable').append(result);
+                $j(".addRubricForm").remove();
+                $j(".addRubric").css('display','block');
+                $j("#addRubricButton").unbind('click');
 			}
 		});
-	});}
+	});
+}
 function loadPicture()
 {
 	$j(".loadButton").unbind("click");
@@ -85,8 +106,11 @@ function loadPicture()
 	});
 }
 function addPassage()
-{	$j(".addMP").click(function()
-	{		var temp=$j("#temp").val();		var oldid=$j(this).attr("id");
+{
+	$j(".addMP").click(function()
+	{
+		var temp=$j("#temp").val();
+		var oldid=$j(this).attr("id");
 		var id=parseInt(oldid)+1;
 		var passageHtml='\
 		<div class="addPassage">\
@@ -123,4 +147,6 @@ function addPassage()
         $j(".passages").append(passageHtml);
         $j(".addMP#"+oldid).remove();
         loadPicture();
-        addPassage();	});}
+        addPassage();
+	});
+}
