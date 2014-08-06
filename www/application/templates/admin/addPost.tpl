@@ -2,7 +2,8 @@
 	Создание нового поста
 </h1>
 <div class="addpost">
-    <form method="post" id="addpostform" action="">
+    <form method="get" id="addpostform" action="">
+        <input type="hidden" name="name" value="value" />
         <input name="temp" id="temp" type="hidden" value="{$temp}">
         <div class="rubrics">
             <div class="label">
