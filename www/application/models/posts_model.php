@@ -6,6 +6,7 @@ class posts_model extends Model
 		$this->getClassName(__CLASS__);
 		$this->selectTable('posts');
 		$this->selectDb('lonty');
+		//$this->setPseudonyms();
 	}
 
 	function getPosts($limitStart, $limit)
@@ -41,13 +42,13 @@ class posts_model extends Model
     		r.rubric_name
     	FROM
     		posts p
-    	JOIN
+    	LEFT JOIN
     		passages pa
     		ON p.post_id = pa.post_id
-    	JOIN
+    	LEFT JOIN
     		postrubrics pr
     		ON p.post_id = pr.post_id
-    	JOIN
+    	LEFT JOIN
     		rubrics r
     		ON r.rubric_id = r.rubric_id
  		WHERE p.post_id = "'.$id.'"
@@ -79,11 +80,11 @@ class posts_model extends Model
 	{
 		$query = '
 		SELECT
-            COUNT(pa.passage_id) as amount,
 			p.post_id as id,
 			p.post_date as date,
 			p.post_name as name,
-            GROUP_CONCAT(DISTINCT r.rubric_name ORDER BY r.rubric_name ASC SEPARATOR ", ") AS rubrics
+            GROUP_CONCAT(DISTINCT r.rubric_name ORDER BY r.rubric_name ASC SEPARATOR ", ") AS rubrics,
+            COUNT(pa.passage_id) as amount
 			FROM
 				posts p
 			JOIN
@@ -100,7 +101,37 @@ class posts_model extends Model
 		';
 		$row = $this->getAll($query);
 		return $row;	}
-	/*public function rules()
-	{		return array('posts_name'=>array('require'));	} */
+	function getPostsNoPassages()
+	{		$query = '
+		SELECT p.post_id, p.post_name, p.post_date, GROUP_CONCAT( DISTINCT r.rubric_name
+		ORDER BY r.rubric_name ASC
+		SEPARATOR ", " ) as rubric_name
+		FROM posts p
+		JOIN postrubrics pr
+			ON p.post_id = pr.post_id
+		JOIN rubrics r
+			ON pr.rubric_id = r.rubric_id
+		LEFT JOIN passages pa
+			ON pa.post_id = p.post_id
+		GROUP BY
+			p.post_id,
+			pa.passage_id HAVING COUNT( pa.passage_id ) = 0
+		ORDER BY p.post_date
+		';
+		$row = $this->getAll($query);
+		return $row;	}
+	public function rules()
+	{		return array('post_name'=>array('require'));	}
+	public function attributes()
+	{		return array('post_name'=>'Заголовок поста');	}
+	public static function setPseudonyms()
+	{		self::$pseudonyms=array( 'post_id'=>'post_id',
+								 'post_name'=>'name',
+								 'post_epilog'=>'epilog',
+								 'post_prolog'=>'prolog',
+								 'post_date'=>'date',
+								 'post_likes'=>'likes'
+								 );
+		return self::$pseudonyms;	}
 }
 ?>

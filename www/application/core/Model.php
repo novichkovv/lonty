@@ -7,6 +7,7 @@ class Model
     public $attributes;
     public $className;
     public $rules;
+    public static $pseydonyms;
 	public function getClassName($name)
 	{
 		$name=str_replace('_model', '', $name);

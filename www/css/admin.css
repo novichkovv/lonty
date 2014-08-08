@@ -1,7 +1,8 @@
 .addpost {
-	margin: 40px;
-	padding: 30px;
+	margin: 0px 40px;
+	padding: 0px 30px;
 	text-align: center;	}
+.rubrics {	text-align: center;	}
 .addPassage {	display: inline-block;	width: 450px;	margin: 20px 0;
 	padding: 26px;
 	box-shadow: 0 0 3px #ccc;
@@ -24,7 +25,30 @@
 	box-shadow: 0 0 3px inset;
 	display: inline-block;
 	cursor: pointer;	}
-#rubricsTable {	display: inline-block;	}
+.rubricsTable {	display: inline-block;	}
 .preview img {	max-width: 300px;
 	max-height: 150px;
 	}
+.inline {	display: inline-block;	}
+.smallButton {	cursor: pointer;	padding: 5px 2px;
+	margin: 5px;
+	border: 1px solid #ccc;
+	background-color: #eee;
+	box-shadow: 0 0 3px;
+	width: 150px;	}
+h1.header {	width: 100%;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom:-20px;	}
+.label {	margin: 10px;
+	font-size: 18px;
+	color: green;	}
+.examle_holder {
+	display: none;	}
+.examle_holder textarea{
+	background-color: whitesmoke;
+	}
+.red {	background-color: orange;
+	border: 1px solid red;	}
+.hide {
+	display: none;	}

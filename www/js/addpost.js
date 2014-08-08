@@ -4,6 +4,26 @@ $j(document).ready(function()
 	loadPicture();
 	addPassage();
 	addRubricForm();
+	$j(".example_button").click(function(event)
+	{		//alert($j(this).attr('class'));//slideToggle(100);		$j(this).parent().children().each(function(event)
+		{			$j(this).slideToggle(100);
+		});	});
+	$j("#addpostform").submit(function()
+	{
+		var rubric_check = false;
+		$j(".rubric_check").each(function()
+		{
+			if($j(this).prop('checked'))rubric_check = true;
+		});
+		if(!rubric_check)
+		{
+			alert('Не выбраны рубрики!');
+			return false;
+		}
+		if(!$j("#post_name").val())
+		{			alert('Нужно ввести хотя бы название!');
+			return false;		}
+	});
 });
 function addRubricForm()
 {
@@ -15,8 +35,9 @@ function addRubricForm()
 		<div class="addRubricForm">\
 				<label>Введите название рубрики</label><br />\
 				<input id="addRubricInput"  name="rubrics[rubric_name]" type="text" value="" />\
-				<div class="cansAddRubric" class="smallButton">Отменить</div>\
-				<div id="addRubricButton" class="smallButton">Сохранить</div>\
+				<br />\
+				<div class="cansAddRubric smallButton red inline">Отменить</div><br />\
+				<div id="addRubricButton" class="smallButton inline">Сохранить</div>\
 		</div>\
 		');
 		addRubric();
@@ -24,7 +45,7 @@ function addRubricForm()
 		$j(".cansAddRubric").click(function()
 		{
 			$j(".addRubricForm").remove();
-			$j(".addRubric").css('display','block');
+			$j(".addRubric").css('display','inline-block');
             $j("#addRubricButton").unbind('click');
 		});
 	});
@@ -48,7 +69,7 @@ function addRubric()
 			{
 				$j('#rubricsTable').append(result);
                 $j(".addRubricForm").remove();
-                $j(".addRubric").css('display','block');
+                $j(".addRubric").css('display','inline-block');
                 $j("#addRubricButton").unbind('click');
 			}
 		});

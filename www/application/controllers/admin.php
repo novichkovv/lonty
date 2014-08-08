@@ -8,20 +8,37 @@ class admin_controller extends controller
 		$this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
   		$model = new posts_model;
   		$posts = $model->getPostsList();
+  		$no_pas_posts = $model->getPostsNoPassages();
   		$this->t->assign('posts', $posts);
+  		$this->t->assign('no_pas_posts', $no_pas_posts);
 	}
 	public function addpost()
 	{
 		$this->styles=array('admin');
-        $this->scripts=array('jquery', 'ajaxUpload', 'addpost');
+        $this->scripts=array('jquery', 'addpost');
 
 		$rubrics_model=new rubrics_model();
 		$rubrics = $rubrics_model->selectAll();
 		$this->t->assign('rubrics', $rubrics);
 
 		$post_model = new posts_model();
+		if(isset($_POST['addPostButton']))
+		{
+			$_POST['posts']['post_date']=date('Y-m-d H:i:s');
+			$post_model->insert();
+			$id=mysql_insert_id();
+			$rubrics=$_POST['postrubrics'];
+			foreach($rubrics as $key=>$vol)
+			{				$postrubrics_model = new postrubrics_model();
 
-//		if(isset($id))
+				$_POST['postrubrics']=$vol;
+				$_POST['postrubrics']['post_id'] = $id;
+				$postrubrics_model->insert();
+			}
+			header('location: '.SITE_DIR.'admin/editpost/'.$id);
+		}
+		$postInfo = array();
+		//		if(isset($id))
 //		{
 //			$item = $post_model->getPost($id);
 //			$post = array();
@@ -41,16 +58,6 @@ class admin_controller extends controller
 //				}
 //			}
 //		}
-
-
-		if(isset($_POST['addPostButton']))
-		{
-
-
-				$_POST['posts']['post_date']=date('Y-m-d H:i:s');
-				$post_model->insert();
-				$id=mysql_insert_id();
-
 //			else
 //			{
 //				$query = $post_model->update("WHERE post_id = '$id'");
@@ -94,7 +101,6 @@ class admin_controller extends controller
 //
 //				}
 //			}
-			$rubrics=$_POST['postrubrics'];
 //			if($vars[0])
 //			{
 //				foreach($post['rubric'] as $rubric_id=>$vol)
@@ -104,18 +110,23 @@ class admin_controller extends controller
 //
 //				}
 //			}
-			foreach($rubs as $key=>$vol)
-			{
-				$_POST['postrubrics']=$vol;
-//				$_POST['postrubrics']['post_id']=$id;
-//				if(!array_key_exists($vol['rubric_id'], $post['rubric']))
-				$postrubrics->insert();
-			}
-			header('location: '.SITE_DIR.'admin/editpost/'.$id);
-		}
-		$postInfo = array();
 
 	}
+	public function editpost($vars='')
+	{		$this->styles=array('admin');
+        $this->scripts=array('jquery', 'ajaxUpload', 'addpost');
+        $posts_model = new posts_model();
+        $posts = $posts_model->getPost($vars[0]);
+       // $rubrics_model = new rubrics_model();
+        $post = array();
+        foreach($posts as $k=>$row)
+        {        	foreach($row as $key=>$vol)
+        	{        	 	if(in_array($key, $posts_model->pseudonyms))
+        	 		$post[$key] = $vol;
+        		if(in_array($key, rubrics_model::$pseudonyms))
+        			$post['rubric'] = $vol;        	}        }
+        print_r($post);
+	}
 	public function loadpic($vars = '')
 	{
 		$type = $vars[0];
