@@ -171,3 +171,6 @@ function addPassage()
         addPassage();
 	});
 }
+function editRubrics()
+{	$j(".rubrics").click(function()
+	{		$j(".editable-data").slideDown(200);	});}

@@ -52,3 +52,8 @@ h1.header {	width: 100%;
 	border: 1px solid red;	}
 .hide {
 	display: none;	}
+.editPost {	text-align: center;
+	display: inline-block;	width: 800px;	}
+.fullsizeImg{
+	display: inline-block;	}
+.content {	text-align:center;	}

@@ -6,7 +6,7 @@ class posts_model extends Model
 		$this->getClassName(__CLASS__);
 		$this->selectTable('posts');
 		$this->selectDb('lonty');
-		//$this->setPseudonyms();
+		$this->fields = $this->fields();
 	}
 
 	function getPosts($limitStart, $limit)
@@ -33,13 +33,13 @@ class posts_model extends Model
     		p.post_epilog as epilog,
     		p.post_prolog as prolog,
     		p.post_date as date,
-    		pa.passage_id as pa_id,
+    		pa.passage_id as passage_id,
     		pa.passage_header as header,
-    		pa.passage_imgtype as img,
+    		pa.passage_imgtype as imgtype,
     		pa.passage_text as text,
     		pa.main,
     		pr.rubric_id,
-    		r.rubric_name
+    		r.rubric_name as rubric
     	FROM
     		posts p
     	LEFT JOIN
@@ -124,14 +124,30 @@ class posts_model extends Model
 	{		return array('post_name'=>array('require'));	}
 	public function attributes()
 	{		return array('post_name'=>'Заголовок поста');	}
-	public static function setPseudonyms()
-	{		self::$pseudonyms=array( 'post_id'=>'post_id',
-								 'post_name'=>'name',
-								 'post_epilog'=>'epilog',
-								 'post_prolog'=>'prolog',
-								 'post_date'=>'date',
-								 'post_likes'=>'likes'
-								 );
-		return self::$pseudonyms;	}
+	public static function fields()
+	{		$fields=array(
+			 'post_id'=>'post_id',
+			 'post_name'=>'name',
+			 'post_epilog'=>'epilog',
+			 'post_prolog'=>'prolog',
+			 'post_date'=>'date',
+			 'likes'=>'likes',
+			 'pk'=>'post_id'
+			 );
+		return $fields;	}
+	public static function relations()
+	{
+		return array(
+			'passages'=>array(
+				'type'=>'has_many',
+				'key'=>'post_id',
+				'foreign_key'=>'post_id'
+				),
+			'postrubrics'=>array(
+				'type'=>'has_many',
+				'key'=>'post_id',
+				'foreign_key'=>'post_id'
+				),
+			);	}
 }
 ?>
