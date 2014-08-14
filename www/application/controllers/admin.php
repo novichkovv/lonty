@@ -29,7 +29,8 @@ class admin_controller extends controller
 			$id=mysql_insert_id();
 			$rubrics=$_POST['postrubrics'];
 			foreach($rubrics as $key=>$vol)
-			{				$postrubrics_model = new postrubrics_model();
+			{
+				$postrubrics_model = new postrubrics_model();
 
 				$_POST['postrubrics']=$vol;
 				$_POST['postrubrics']['post_id'] = $id;
@@ -113,7 +114,8 @@ class admin_controller extends controller
 
 	}
 	public function editpost($vars='')
-	{		$this->styles=array('admin', 'application');
+	{
+		$this->styles=array('admin', 'application');
         $this->scripts=array('jquery', 'ajaxUpload', 'application', 'addpost' );
         $temp = rand();
         $this->t->assign('temp', $temp);
@@ -123,7 +125,9 @@ class admin_controller extends controller
        	$res = $rubrics_model->selectAll();
        	$rubrics = array();
        	foreach($res as $k=>$row)
-       	{       		$rubrics[$row['rubric_id']] = $row['rubric_name'];       	}
+       	{
+       		$rubrics[$row['rubric_id']] = $row['rubric_name'];
+       	}
         $this->t->assign('rubrics', $rubrics);
         $this->t->assign('posts', $posts[key($posts)]);
 	}
@@ -166,9 +170,12 @@ class admin_controller extends controller
 			}
 			$arr=explode('/', $name);
 			$id=$arr[count($arr)-1];
+            $post_id=$arr[count($arr)-2];
 			echo ('
 			<img id="loaded-image" src="http://'.$_SERVER['HTTP_HOST'].'/'.$name.'.'.$type.'?'.rand().'" />
-			<input id="img-name" name="imgName['.$id.']" type="hidden" value="'.$name.'">
+			<input form-group="img" name="imgName['.$id.']" type="hidden" value="'.$name.'" />
+			<input type="hidden" name="post_id" form-group="img" value="'.$post_id.'" />
+			<input type="hidden" name="img_type" form-group="img" value="'.$type.'" />
 			');
 			exit;
 		}
@@ -211,22 +218,9 @@ class admin_controller extends controller
                 exit;
 			break;
 
-			case "posts":
-				$model = new posts_model;
-				$data = array();
-				$post_id = $_POST['key'];
-				foreach($_POST as $k=>$row)
-				{					if($k == 'action')
-						continue;
-					if($k == 'posts')
-					{						foreach($row as $field=>$val)
-						{							$data[] =$field .'="'. $val .'"';						}
-						$data = implode(', ', $data);					}
-				}
-				$query = 'UPDATE posts SET '.$data.' WHERE post_id = "'.$post_id.'"';
-				$model->query($query);
-				echo $val;
-				exit;
+			case "save_img":
+				print_r($_POST);
+                exit;
 			break;
 		}
 	}
@@ -238,7 +232,8 @@ class admin_controller extends controller
 		$model = $table.'_model';
 		$model = new $model;
 		$fields = $model->getFields();
-		$pk = $fields['pk'];		$query = 'UPDATE '.$table.' SET '.$data.' WHERE '.$pk.'="'.$_POST['key'].'"';
+		$pk = $fields['pk'];
+		$query = 'UPDATE '.$table.' SET '.$data.' WHERE '.$pk.'="'.$_POST['key'].'"';
 		$model->query($query);
 		echo $_POST[$table][key($_POST[$table])];
 		exit;

@@ -1,6 +1,8 @@
 $j = jQuery.noConflict();
 $j(document).ready(function()
-{	bindEditable();});
+{
+	bindEditable();
+});
 var node = '\
 	<div class="editable-form">\
 		<div class="editable-form-header">\
@@ -28,17 +30,22 @@ function bindEditable()
 			$j("button[name='edit']").attr("action", action);
 			$j(document).off('click.editable');
 			$j('.cancel-editable').click(function()
-			{				$j("[status='waiting']").removeAttr('status');				$j(this).unbind('click');
+			{
+				$j("[status='waiting']").removeAttr('status');
+				$j(this).unbind('click');
 				$j(".editable-form").remove();
 				bindEditable();
 			});
 		}
 		if(type == "img")
-		{			var picture = $j(this);			var id = $j(this).attr("key");
+		{
+			var picture = $j(this);
+			var id = $j(this).attr("key");
 			var temp = $j("#temp").val();
 			var img = $j(this).attr("src");
 			var container = $j(this).parent();
-			var img_type = $j(this).attr('img-type');			var form = '\
+			var img_type = $j(this).attr('img-type');
+			var form = '\
 			<div class="imgForm">\
 			Тип изображения: <input class="img-type" name="passages['+id+'][passage_imgtype]" type="radio" value="jpg">jpg\
 			<input class="img-type" name="passages['+id+'][passage_imgtype]" type="radio" value="gif">gif\
@@ -54,7 +61,7 @@ function bindEditable()
 		 	 				<span id="status'+id+'" class="status"></span>\
 		    	</div>\
 		    	<div class="buttons">                                                                                   \
-		    		<button class="btn btn-default ajax-editable-submit">Сохранить</button><button class="btn btn-cancel cancel-editable">Отменить</button> \
+		    		<button class="btn btn-default ajax-editable-img" action="save_img">Сохранить</button><button class="btn btn-cancel cancel-editable">Отменить</button> \
 		    	</div>                                                                                                   \
 	  	 	</div><!--addphoto-->\
 	  	 	</div><!--imgForm-->\
@@ -69,10 +76,13 @@ function bindEditable()
 			$j('.cancel-editable').click(function()
 			{
 				$j("[status='waiting']").removeAttr('status');
-				$j(this).unbind('click');				$j(".imgForm").remove();
+				$j(this).unbind('click');
+				$j(".imgForm").remove();
 				$j(picture).css("display","block");
 				$j(document).off('click.editable');
-				bindEditable();			});		}
+				bindEditable();
+			});
+		}
 	});
 }
 
@@ -81,10 +91,14 @@ ajaxForm.prototype =
 {
 	constructor: ajaxForm,
 	send: function()
-	{		var params = this.params;		$j('body').on('click', params.button, function()
-		{			params.action = $j(this).attr('action');			var data = [];
+	{
+		var params = this.params;
+		$j('body').on('click', params.button, function()
+		{
+			params.action = $j(this).attr('action');
+			var data = [];
 			data.push('action=' + params.action);
-			$j("[form-group='editable']").each(function()
+			$j("[form-group='"+params.group+"']").each(function()
 			{
 				data.push($j(this).attr("name") + "=" + $j(this).val());
 			});
@@ -94,39 +108,42 @@ ajaxForm.prototype =
 				type: "post",
 				data: data,
 				success: params.success
-			});		});
+			});
+		});
 	}
 }
 $j(document).ready(function ()
 {
     var c = new ajaxForm();
-    c.params = { button: '.ajax-editable-submit',    			 url: '../ajaxEditable/',
+
+    c.params = {
+                 button: '.ajax-editable-submit',
+    			 url: '../ajaxEditable/',
     			 group: 'editable',
     			 success: function(result)
-    			 {    			 	$j("[status='waiting']").html(result);
+    			 {
+    			 	$j("[status='waiting']").html(result);
     			 	$j("[status='waiting']").unbind('click');
 					$j(".editable-form").remove();
 					bindEditable();
-    			 	$j("[status='waiting']").removeAttr('status');    			 }
+    			 	$j("[status='waiting']").removeAttr('status');
+    			 }
     			};
 
     c.send();
     var saveImg = new ajaxForm();
-   // var imgName = $j("#loaded-img").attr("src");
-   // var newName;
-   // var img_type;
-   // var path_els = imgName.split('/');
-    //alert(path_els);
 	saveImg.params = {
-					button: '.ajax-editable-submit',
+					button: '.ajax-editable-img',
 					url: '../ajax/',
 					group: 'img',
 					success: function(result)
 					{
+                        alert(result);
 						$j("[status='waiting']").html(result);
     			 		$j("[status='waiting']").unbind('click');
 					}
-					};
+				};
+    saveImg.send();
 });
 
 

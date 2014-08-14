@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-09 14:34:19
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-14 23:04:40
          compiled from "Z:\home\lonty.sru\www\application\templates\admin\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2534453e5f92ba5e047-36871339%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'de4b0cbd588fb8df1ad082995e3d5eba14823519' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\admin\\index.tpl',
-      1 => 1407507595,
+      1 => 1407573391,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.19',
+  'unifunc' => 'content_53e5f92c3f1f18_32879972',
   'variables' => 
   array (
     'posts' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'no_pas_posts' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_53e5f92c3f1f18_32879972',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53e5f92c3f1f18_32879972')) {function content_53e5f92c3f1f18_32879972($_smarty_tpl) {?><div class="admin-panel">
 	<a class="button-link" href="<?php echo @constant('SITE_DIR');?>
