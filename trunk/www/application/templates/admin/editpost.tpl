@@ -17,7 +17,7 @@
 					<td>
 						<input name="postrubrics[rubric_id]" type="checkbox" value="{$id}">
 					</td>
-				</td>
+				</tr>
 				{/foreach}
 			</table>
 			</div>
