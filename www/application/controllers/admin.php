@@ -3,7 +3,7 @@ class admin_controller extends controller
 {
 	public function index($vars='')
 	{
-		$this->styles=array('admin');
+		$this->styles=array('admin, style');
         $this->scripts=array();
 		$this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
   		$model = new posts_model;
@@ -113,20 +113,20 @@ class admin_controller extends controller
 
 	}
 	public function editpost($vars='')
-	{		$this->styles=array('admin');
-        $this->scripts=array('jquery', 'ajaxUpload', 'addpost');
+	{		$this->styles=array('admin', 'application');
+        $this->scripts=array('jquery', 'ajaxUpload', 'application', 'addpost' );
+        $temp = rand();
+        $this->t->assign('temp', $temp);
         $posts_model = new posts_model();
-        $posts = $posts_model->getPost($vars[0]);
-       // $rubrics_model = new rubrics_model();
-        $post = array();
-        foreach($posts as $k=>$row)
-        {        	foreach($row as $key=>$vol)
-        	{        	 	if(in_array($key, $posts_model->pseudonyms))
-        	 		$post[$key] = $vol;
-        		if(in_array($key, rubrics_model::$pseudonyms))
-        			$post['rubric'] = $vol;        	}        }
-        print_r($post);
-	}
+       	$posts = $posts_model->getAllWithRels($vars[0]);
+       	$rubrics_model = new rubrics_model();
+       	$res = $rubrics_model->selectAll();
+       	$rubrics = array();
+       	foreach($res as $k=>$row)
+       	{       		$rubrics[$row['rubric_id']] = $row['rubric_name'];       	}
+        $this->t->assign('rubrics', $rubrics);
+        $this->t->assign('posts', $posts[key($posts)]);
+	}
 	public function loadpic($vars = '')
 	{
 		$type = $vars[0];
@@ -167,9 +167,10 @@ class admin_controller extends controller
 			$arr=explode('/', $name);
 			$id=$arr[count($arr)-1];
 			echo ('
-			<img src="http://'.$_SERVER['HTTP_HOST'].'/'.$name.'.'.$type.'?'.rand().'" />
-			<input name="imgName['.$id.']" type="hidden" value="'.$name.'">
+			<img id="loaded-image" src="http://'.$_SERVER['HTTP_HOST'].'/'.$name.'.'.$type.'?'.rand().'" />
+			<input id="img-name" name="imgName['.$id.']" type="hidden" value="'.$name.'">
 			');
+			exit;
 		}
 	}
 	public function crop()
@@ -209,7 +210,38 @@ class admin_controller extends controller
                 ');
                 exit;
 			break;
+
+			case "posts":
+				$model = new posts_model;
+				$data = array();
+				$post_id = $_POST['key'];
+				foreach($_POST as $k=>$row)
+				{					if($k == 'action')
+						continue;
+					if($k == 'posts')
+					{						foreach($row as $field=>$val)
+						{							$data[] =$field .'="'. $val .'"';						}
+						$data = implode(', ', $data);					}
+				}
+				$query = 'UPDATE posts SET '.$data.' WHERE post_id = "'.$post_id.'"';
+				$model->query($query);
+				echo $val;
+				exit;
+			break;
 		}
+	}
+
+	public function ajaxEditable()
+	{
+		$table = $_POST['action'];
+		$data = key($_POST[$table]).'="'.mysql_real_escape_string($_POST[$table][key($_POST[$table])]).'"';
+		$model = $table.'_model';
+		$model = new $model;
+		$fields = $model->getFields();
+		$pk = $fields['pk'];		$query = 'UPDATE '.$table.' SET '.$data.' WHERE '.$pk.'="'.$_POST['key'].'"';
+		$model->query($query);
+		echo $_POST[$table][key($_POST[$table])];
+		exit;
 	}
 }
 ?>

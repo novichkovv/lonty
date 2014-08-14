@@ -7,7 +7,7 @@ class Model
     public $attributes;
     public $className;
     public $rules;
-    public static $pseydonyms;
+    public $fields;
 	public function getClassName($name)
 	{
 		$name=str_replace('_model', '', $name);
@@ -222,6 +222,8 @@ class Model
 		$data = mysql_real_escape_string($data);
 		return($data);
 	}
+	public function query($query)
+	{		mysql_query($query) or $this->mysqlError();	}
 	public function update($term,$table='')
 	{
 		if(!$table)$table=$this->table;
@@ -239,10 +241,93 @@ class Model
 			mysql_query($query) or $this->mysqlError();
 		}
 	}
-	public function fields()
-	{
-	}
+	public function getFields($table = '')
+	{		if(!$table)$table = $this->table;		$fields = array();
+		$query = 'SHOW COLUMNS FROM '.$table;
+		$res = $this->getAll($query);
+		foreach($res as $k=>$v)
+		{			$fields[$v['Field']] =  $v['Field'];
+			if($v['Key'] == 'PRI')
+				$fields['pk'] = $v['Field'];
+		}
+		return $fields;
+	}
+	public function getAllWithRels($id='')
+	{		$result = array();		$relations = $this->relations();
+		$fields = $this->fields();
+		if(!$fields)$fields = $this->getFields();
+		foreach($fields as $field=>$f)
+		{			if($field == 'pk')
+				continue;			$result['select'][] = $this->table.'.'.$field.' as '.$f;		}		if($relations)
+		{
+			$related_tables = $this->getRelatedTables($this->table);
+			foreach($related_tables as $k=>$vol)
+			{				foreach($vol['fields'] as $field=>$f)				$result['select'][] = $vol['table'].'.'.$field.' as '.$f;
+				$result['join'][] = 'LEFT JOIN '.$vol['table'].' ON '.$vol['relate_table'].'.'.$vol['relations']['foreign_key'].' = '.$vol['table'].'.'.$vol['relations']['key'];			}		}
+		if($result['select'])$select = implode(', ',$result['select']);
+		if($result['join'])$join = implode(' ', $result['join']);
+		$query = 'SELECT
+					'.$select.'
+				  FROM
+				  	'.$this->table.'
+	  			  '.$join.'
+	  			  '.($id ? 'WHERE '.$this->table.'.'.$fields['pk'].' = "'.$id.'"' : '
+	  			  GROUP BY '.$this->table.'.'.$fields['pk'].'');
+	  	$res = $this->getAll($query);
+	  	$result = $this->handleResult($res);
+        return $result;	}
+	public function getRelatedTables($rel_table)
+	{		$table_model = $rel_table.'_model';		if(!$relations = $table_model::relations())return;		$related_table = array();		if($relations)
+		$count = 0;		foreach($relations as $table=>$params)
+		{
+			$related_table[$count]['table'] = $table;
+			$related_table[$count]['relate_table'] = $rel_table;
+			$related_table[$count]['relations'] = $params;
+
+			$table_model = $table.'_model';
+
+			$table_fields = $table_model::fields();
+			if(!$table_fields)$table_fields = $this->getFields($table);
+
+			$related_table[$count]['fields'] = $table_fields;
+			$related_table[$count]['pk'] = $table_fields['pk'];
+			unset($related_table[$count]['fields']['pk']);
+            $count++;
+			if(!$res = $this->getRelatedTables($table))continue;
+			foreach($res as $k=>$v)
+			{				array_push($related_table, $v);			}
+		};
+		return($related_table);	}
+	function handleResult($res)
+	{		$table = $this->table;
+		$related_tables = $this->getRelatedTables($this->table);
+		if(!$fields = $this->fields)$fields = self::fields();		$result = array();
+		$count = array();
+		$count[0] = 0;
+		for($i=1; $i<=count($related_tables); $i++)
+		{			$count[$i] = 0;		}		foreach($res as $k=>$row)
+        {
+        	foreach($row as $key=>$vol)
+        	{        		if(in_array($key, $fields))
+        			$result[$row[$fields['pk']]][$key] = $vol;
+        		foreach($related_tables as $i=>$param)
+        		{
+	       	 		if(in_array($key, $param['fields']))
+	       	 		{
+	       	 			$result[$row[$fields['pk']]][$param['table']][$row[$param['pk']]][$key] = $vol;
+	       	 		}
+	       		}
+        	}
+        	foreach($count as $k=>$v)
+	       	{
+	       		$count[$k]++;
+	       	}
+
+        }
+        return $result;	}
 	public function attributes(){}
 	public function rules(){}
+	public static function relations(){}
+	public static function fields(){}
 }
 ?>
