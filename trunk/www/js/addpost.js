@@ -112,7 +112,7 @@ function loadPicture()
 					$j('#preview'+id+' img').remove();
 					$j('#preview'+id+' input').remove();
 					jQuery('#preview'+id).append(response);
-                    $j('#preview'+id+' input').attr('name', id);
+                    //$j('#preview'+id+' input').attr('name', id);
                     	var newLoad='<span id="span'+id+'" class="loadButton" imgName="temp'+temp+''+id+'">Изменить</span>';
                     	$j("#upload"+id).html(newLoad);
                     	loadPicture();

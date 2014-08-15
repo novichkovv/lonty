@@ -170,11 +170,12 @@ class admin_controller extends controller
 			}
 			$arr=explode('/', $name);
 			$id=$arr[count($arr)-1];
-            $post_id=$arr[count($arr)-2];
+            //$post_id=$arr[count($arr)-2];
+            $new_img  = 'http://'.$_SERVER['HTTP_HOST'].'/images/pictures/big/'.$_POST['superkey'].'/'.$_POST['key'].'.'.$type;
 			echo ('
-			<img id="loaded-image" src="http://'.$_SERVER['HTTP_HOST'].'/'.$name.'.'.$type.'?'.rand().'" />
-			<input form-group="img" name="imgName['.$id.']" type="hidden" value="'.$name.'" />
-			<input type="hidden" name="post_id" form-group="img" value="'.$post_id.'" />
+			<img src="http://'.$_SERVER['HTTP_HOST'].'/'.$name.'.'.$type.'?'.rand().'" />
+			<input form-group="img" name="img" type="hidden" value="'.$name.'" />
+			<input type="hidden" name="new_img_name" form-group="img" value="'.$new_img.'" />
 			<input type="hidden" name="img_type" form-group="img" value="'.$type.'" />
 			');
 			exit;
@@ -219,7 +220,16 @@ class admin_controller extends controller
 			break;
 
 			case "save_img":
-				print_r($_POST);
+				if(file_exists(SITE_PATH.DS.$_POST['img'].'.'.$_POST['img_type']))
+				{					$new_img = SITE_PATH.DS.'images'.DS.'pictures'.DS.'big'.DS.$_POST['superkey'].DS.$_POST['key'].'.'.$_POST['img_type'];
+					if(@copy(SITE_PATH.DS.$_POST['img'].'.'.$_POST['img_type'], $new_img))
+					{
+						echo SITE_DIR.'images/pictures/big/'.$_POST['superkey'].'/'.$_POST['key'].'.'.$_POST['img_type'].'?'.rand();
+						($_POST['img_type'] == 'jpg' ? $type = 'gif' : $type = 'jpg';
+						if(file_exists(SITE_PATH.DS.$_POST['img'].'.'.$type))
+							unlink(SITE_PATH.DS.$_POST['img'].'.'.$type);
+					}
+				}
                 exit;
 			break;
 		}

@@ -47,6 +47,8 @@ function bindEditable()
 			var img_type = $j(this).attr('img-type');
 			var form = '\
 			<div class="imgForm">\
+			<input name="key" group="img" type="hidden" value="">\
+			<input name="superkey" group="img"  type="hidden" value=""> \
 			Тип изображения: <input class="img-type" name="passages['+id+'][passage_imgtype]" type="radio" value="jpg">jpg\
 			<input class="img-type" name="passages['+id+'][passage_imgtype]" type="radio" value="gif">gif\
 			 <br />\
@@ -68,6 +70,8 @@ function bindEditable()
 			';
 			$j(this).hide();
 			$j(container).append(form);
+			$j("input[name='key']").val($j(this).attr('key'));
+			$j("input[name='superkey']").val($j(this).attr('superkey'));
 			$j(".img-type[value='" + img_type + "']").prop("checked", true);
 			$j("#editable-preview-img").attr("src", img);
 			$j(".imgName").val(img);
@@ -98,6 +102,8 @@ ajaxForm.prototype =
 			params.action = $j(this).attr('action');
 			var data = [];
 			data.push('action=' + params.action);
+			data.push('key=' + $j("input[name='key']").val());
+			data.push('superkey=' + $j("input[name='superkey']").val());
 			$j("[form-group='"+params.group+"']").each(function()
 			{
 				data.push($j(this).attr("name") + "=" + $j(this).val());
@@ -137,10 +143,12 @@ $j(document).ready(function ()
 					url: '../ajax/',
 					group: 'img',
 					success: function(result)
-					{
-                        alert(result);
-						$j("[status='waiting']").html(result);
-    			 		$j("[status='waiting']").unbind('click');
+					{						if(result)$j("img[status='waiting']").attr('src', result);// +'?'+ Math.floor(Math.random()*1000*1000));
+    			 		$j("img[status='waiting']").unbind('click');
+    			 		$j("img[status='waiting']").css('display', 'block');
+    			 		$j(".imgForm").remove();
+						bindEditable();
+    			 		$j("[status='waiting']").removeAttr('status');
 					}
 				};
     saveImg.send();

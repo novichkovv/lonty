@@ -35,7 +35,7 @@
  			{$passage.header}
        	</div>
 		<div class="fullsizeImg">
-			<img class="bigImg editable" data-type="img" img-type="{$passage.img_type}" key="{$passage.passage_id}" src="{$smarty.const.SITE_DIR}images/pictures/big/{$posts.post_id}/{$passage.passage_id}.{$passage.img_type}" />
+			<img class="bigImg editable" data-type="img" superkey="{$posts.post_id}" img-type="{$passage.img_type}" key="{$passage.passage_id}" src="{$smarty.const.SITE_DIR}images/pictures/big/{$posts.post_id}/{$passage.passage_id}.{$passage.img_type}?{$temp}" />
 		</div>
 		<div class="passageText editable" action="passages" key="{$passage.passage_id}" data-type="textarea" name="passages[passage_text]">
  			{if $passage.text}{$passage.text}{else}<b class="btn small">добавить текст</b>{/if}
