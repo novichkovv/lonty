@@ -223,7 +223,9 @@ class Model
 		return($data);
 	}
 	public function query($query)
-	{		mysql_query($query) or $this->mysqlError();	}
+	{
+		mysql_query($query) or $this->mysqlError();
+	}
 	public function update($term,$table='')
 	{
 		if(!$table)$table=$this->table;
@@ -242,28 +244,42 @@ class Model
 		}
 	}
 	public function getFields($table = '')
-	{		if(!$table)$table = $this->table;		$fields = array();
+	{
+		if(!$table)$table = $this->table;
+		$fields = array();
 		$query = 'SHOW COLUMNS FROM '.$table;
 		$res = $this->getAll($query);
 		foreach($res as $k=>$v)
-		{			$fields[$v['Field']] =  $v['Field'];
+		{
+			$fields[$v['Field']] =  $v['Field'];
 			if($v['Key'] == 'PRI')
 				$fields['pk'] = $v['Field'];
 		}
 		return $fields;
-	}
+
+	}
 	public function getAllWithRels($id='')
-	{		$result = array();		$relations = $this->relations();
+	{
+		$result = array();
+		$relations = $this->relations();
 		$fields = $this->fields();
 		if(!$fields)$fields = $this->getFields();
 		foreach($fields as $field=>$f)
-		{			if($field == 'pk')
-				continue;			$result['select'][] = $this->table.'.'.$field.' as '.$f;		}		if($relations)
+		{
+			if($field == 'pk')
+				continue;
+			$result['select'][] = $this->table.'.'.$field.' as '.$f;
+		}
+		if($relations)
 		{
 			$related_tables = $this->getRelatedTables($this->table);
 			foreach($related_tables as $k=>$vol)
-			{				foreach($vol['fields'] as $field=>$f)				$result['select'][] = $vol['table'].'.'.$field.' as '.$f;
-				$result['join'][] = 'LEFT JOIN '.$vol['table'].' ON '.$vol['relate_table'].'.'.$vol['relations']['foreign_key'].' = '.$vol['table'].'.'.$vol['relations']['key'];			}		}
+			{
+				foreach($vol['fields'] as $field=>$f)
+				$result['select'][] = $vol['table'].'.'.$field.' as '.$f;
+				$result['join'][] = 'LEFT JOIN '.$vol['table'].' ON '.$vol['relate_table'].'.'.$vol['relations']['foreign_key'].' = '.$vol['table'].'.'.$vol['relations']['key'];
+			}
+		}
 		if($result['select'])$select = implode(', ',$result['select']);
 		if($result['join'])$join = implode(' ', $result['join']);
 		$query = 'SELECT
@@ -275,10 +291,16 @@ class Model
 	  			  GROUP BY '.$this->table.'.'.$fields['pk'].'');
 	  	$res = $this->getAll($query);
 	  	$result = $this->handleResult($res);
-        return $result;	}
+        return $result;
+	}
 	public function getRelatedTables($rel_table)
-	{		$table_model = $rel_table.'_model';		if(!$relations = $table_model::relations())return;		$related_table = array();		if($relations)
-		$count = 0;		foreach($relations as $table=>$params)
+	{
+		$table_model = $rel_table.'_model';
+		if(!$relations = $table_model::relations())return;
+		$related_table = array();
+		if($relations)
+		$count = 0;
+		foreach($relations as $table=>$params)
 		{
 			$related_table[$count]['table'] = $table;
 			$related_table[$count]['relate_table'] = $rel_table;
@@ -295,20 +317,29 @@ class Model
             $count++;
 			if(!$res = $this->getRelatedTables($table))continue;
 			foreach($res as $k=>$v)
-			{				array_push($related_table, $v);			}
+			{
+				array_push($related_table, $v);
+			}
 		};
-		return($related_table);	}
+		return($related_table);
+	}
 	function handleResult($res)
-	{		$table = $this->table;
+	{
+		$table = $this->table;
 		$related_tables = $this->getRelatedTables($this->table);
-		if(!$fields = $this->fields)$fields = self::fields();		$result = array();
+		if(!$fields = $this->fields)$fields = self::fields();
+		$result = array();
 		$count = array();
 		$count[0] = 0;
 		for($i=1; $i<=count($related_tables); $i++)
-		{			$count[$i] = 0;		}		foreach($res as $k=>$row)
+		{
+			$count[$i] = 0;
+		}
+		foreach($res as $k=>$row)
         {
         	foreach($row as $key=>$vol)
-        	{        		if(in_array($key, $fields))
+        	{
+        		if(in_array($key, $fields))
         			$result[$row[$fields['pk']]][$key] = $vol;
         		foreach($related_tables as $i=>$param)
         		{
@@ -324,7 +355,8 @@ class Model
 	       	}
 
         }
-        return $result;	}
+        return $result;
+	}
 	public function attributes(){}
 	public function rules(){}
 	public static function relations(){}
