@@ -1,9 +1,9 @@
 <?php
 //error_reporting (E_ALL);
-error_reporting(E_ALL ^ E_NOTICE);
-include ('/application/core/config.php');
-include (SITE_PATH . DS . 'application' . DS . 'core' . DS . 'base.php');
-require_once('Z:\home\lonty.sru\www\libs\Smarty\libs\Smarty.class.php');
+error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
+include (realpath($_SERVER['DOCUMENT_ROOT']).DIRECTORY_SEPARATOR. 'application'.DIRECTORY_SEPARATOR.'core'.DIRECTORY_SEPARATOR.'Config.php');
+include (SITE_PATH . DS . 'application' . DS . 'core' . DS . 'Base.php');
+require_once(SITE_PATH.DS.'libs'.DS.'Smarty'.DS.'libs'.DS.'Smarty.class.php');
 
 // Загружаем router
 $registry = new Registry;
