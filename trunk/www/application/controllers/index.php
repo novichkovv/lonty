@@ -1,11 +1,11 @@
 <?php
-class index_controller extends controller
+class index_Controller extends Controller
 {
 	public function index($args='')
 	{
 		(isset($args[0]))?$page=$args[0]:$page=1;
 		$this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
-		$post_model=new posts_model;
+		//$post_model=new posts_model;
 
 		$limit=1;
 		$limitStart=$limit*$page-$limit;
