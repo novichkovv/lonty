@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-14 23:04:39
-         compiled from "Z:\home\lonty.sru\www\application\templates\template.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1926953e5356e31c638-08395527%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-19 18:00:01
+         compiled from "/opt/lampp/htdocs/lonty.sru/www/application/templates/template.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:28992358753f37481d5d293-95178621%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '0503a66ba8fd7fa7d81f8f194553ce7fa9743714' => 
+    'd4098d6e4a2b32569092e5ad2c2434d18ba4d3b7' => 
     array (
-      0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\template.tpl',
-      1 => 1407346771,
+      0 => '/opt/lampp/htdocs/lonty.sru/www/application/templates/template.tpl',
+      1 => 1408391927,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1926953e5356e31c638-08395527',
+  'nocache_hash' => '28992358753f37481d5d293-95178621',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_53e5356e850f61_23548526',
   'variables' => 
   array (
     'title' => 0,
@@ -28,8 +26,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fof' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.19',
+  'unifunc' => 'content_53f37481ed9f18_35770315',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53e5356e850f61_23548526')) {function content_53e5356e850f61_23548526($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_53f37481ed9f18_35770315')) {function content_53f37481ed9f18_35770315($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
   <title>

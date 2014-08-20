@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-14 23:04:40
-         compiled from "Z:\home\lonty.sru\www\application\templates\admin\index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2534453e5f92ba5e047-36871339%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-19 21:38:20
+         compiled from "/opt/lampp/htdocs/lonty.sru/www/application/templates/admin/index.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:57982313953f3a7ac6c2880-64797407%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'de4b0cbd588fb8df1ad082995e3d5eba14823519' => 
+    'e88bf5073fda37acb59d23ba24635a4b5e69efbc' => 
     array (
-      0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\admin\\index.tpl',
-      1 => 1407573391,
+      0 => '/opt/lampp/htdocs/lonty.sru/www/application/templates/admin/index.tpl',
+      1 => 1408391927,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2534453e5f92ba5e047-36871339',
+  'nocache_hash' => '57982313953f3a7ac6c2880-64797407',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_53e5f92c3f1f18_32879972',
   'variables' => 
   array (
     'posts' => 0,
@@ -24,8 +22,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'no_pas_posts' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.19',
+  'unifunc' => 'content_53f3a7ac95a479_66907637',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53e5f92c3f1f18_32879972')) {function content_53e5f92c3f1f18_32879972($_smarty_tpl) {?><div class="admin-panel">
+<?php if ($_valid && !is_callable('content_53f3a7ac95a479_66907637')) {function content_53f3a7ac95a479_66907637($_smarty_tpl) {?><div class="admin-panel">
 	<a class="button-link" href="<?php echo @constant('SITE_DIR');?>
 admin/addpost/">
 		Добавить пост

@@ -12,10 +12,10 @@ Class Router
 
     function setPath($path)
     {
-        $path = trim($path, '/\\');
+        //$path = trim($path, '/\\');
         $path .= DS;
         if (is_dir($path) == false) {
-            throw new Exception ('Invalid controller path: `' . $path . '`');
+          throw new Exception ('Invalid controller path: `' . $path . '`');
         }
         $this->path = $path;
     }
@@ -29,7 +29,6 @@ Class Router
         }
         $route = trim($route, '/\\');
         $parts = explode('/', $route);
-
         $cmd_path = $this->path;
         foreach ($parts as $part)
         {
@@ -40,7 +39,6 @@ Class Router
                 array_shift($parts);
                 continue;
             }
-
             if (is_file($fullpath . '.php'))
             {
                 $controller = $part;
@@ -48,7 +46,6 @@ Class Router
                 break;
             }
         }
-
         if (empty($controller))
         {
             $controller = 'index';
@@ -75,12 +72,11 @@ Class Router
         include ($file);
 
         $class = $controller.'_Controller';
-
         $controller = new $class($this->registry);
 
-
         if (is_callable(array($controller, $action)) == false)
-        {        	$action = 'not_found';
+        {
+        	$action = 'not_found';
         }
         $controller->view($action);
         $controller->args=$args;
@@ -89,7 +85,8 @@ Class Router
 
         $controller->$action($args);
          if($action == 'ajax')
-         {         	exit;
+         {
+         	exit;
          }
         $controller->t->assign('title',$controller->title);
         $controller->meta();

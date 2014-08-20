@@ -1,7 +1,7 @@
 <?php
 function my_autoloader($className)
 {
-    $filename = strtolower($className) . '.php';
+    $filename = ucfirst($className) . '.php';
     // определяем класс и находим для него путь
     $expArr = explode('_', $className);
     if(empty($expArr[1]) OR $expArr[0] == 'Controller')
@@ -9,7 +9,8 @@ function my_autoloader($className)
         $folder = 'core';
     }
     else
-    {    	if(isset($expArr[1]))
+    {
+    	if(isset($expArr[1]))
     	{
         	switch(strtolower($expArr[1]))
         	{
