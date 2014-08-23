@@ -9,25 +9,64 @@ class posts_model extends Model
 		$this->fields = $this->fields();
 	}
 
-	function getPosts($limitStart, $limit)
+	function getPosts($limit_start, $limit)
 	{
-		$query="SELECT * FROM
-			 		(SELECT * FROM posts
-				LIMIT $limitStart, $limit) p
-			 	LEFT JOIN
-			 	(SELECT * FROM
-			 		passages
-			 	WHERE main IS TRUE) pa
-			 		ON p.post_id=pa.post_id
-			 	LEFT JOIN postrubrics pr
-			 		ON p.post_id=pr.post_id
-			 	LEFT JOIN rubrics r
-			 		ON pr.rubric_id=r.rubric_id
-				ORDER BY p.post_date DESC
-			 	";
+		$query='SELECT
+		            p.post_id,
+		            p.post_epilog,
+		            p.post_prolog,
+		            p.post_name,
+		            DAY(p.post_date) as day,
+		            MONTH(p.post_date) as month,
+                    group_concat(distinct concat("<a href=\"'.SITE_DIR.'index/rubrics/",r.rubric_id,"\">",r.rubric_name,"</a>")) rubrics
+                FROM
+                    posts p
+                JOIN
+                    postrubrics pr
+                ON p.post_id=pr.post_id
+                JOIN
+                    rubrics r
+                    ON r.rubric_id=pr.rubric_id
+                GROUP BY p.post_id
+                ORDER BY p.post_date
+                LIMIT '.$limit_start.', '.$limit.'
+			 	';
 		$row=$this->getAll($query, true);
 		return($row);
 	}
+
+    function getPost($id)
+    {
+        $query = '
+        SELECT
+            p.post_id,
+		            p.post_name as name,
+                    p.post_epilog as epilog,
+                    p.post_prolog as prolog,
+                    pa.passage_id,
+                    pa.passage_header,
+                    pa.passage_imgtype,
+                    pa.passage_text,
+		            DAY(p.post_date) as day,
+		            MONTH(p.post_date) as month,
+                    group_concat(distinct concat("<a href=\"'.SITE_DIR.'index/rubrics/",r.rubric_id,"\">",r.rubric_name,"</a>")) rubrics
+                FROM
+                    posts p
+                JOIN
+                    postrubrics pr
+                ON p.post_id=pr.post_id
+                JOIN
+                    rubrics r
+                    ON r.rubric_id=pr.rubric_id
+                JOIN
+                    (SELECT * FROM passages ) pa
+                    ON  pa.post_id=p.post_id
+                WHERE p.post_id="'.$id.'"
+                GROUP BY pa.passage_id
+        ';
+        $row=$this->getAll($query, true);
+        return($row);
+    }
 
     function countPosts()
     {
@@ -38,53 +77,15 @@ class posts_model extends Model
         return $tmp[0];
     }
 
-    function getPost($id)
-    {
-    	$query = '
-    	SELECT
-    		p.post_name as name,
-    		p.post_epilog as epilog,
-    		p.post_prolog as prolog,
-    		p.post_date as date,
-    		pa.passage_id as passage_id,
-    		pa.passage_header as header,
-    		pa.passage_imgtype as imgtype,
-    		pa.passage_text as text,
-    		pa.main,
-    		pr.rubric_id,
-    		r.rubric_name as rubric
-    	FROM
-    		posts p
-    	LEFT JOIN
-    		passages pa
-    		ON p.post_id = pa.post_id
-    	LEFT JOIN
-    		postrubrics pr
-    		ON p.post_id = pr.post_id
-    	LEFT JOIN
-    		rubrics r
-    		ON r.rubric_id = r.rubric_id
- 		WHERE p.post_id = "'.$id.'"
-    	';
-    	$row = $this->getAll($query);
-		return($row);
-    }
 	function getRightPosts($not)
 	{
 		$query = '
 		SELECT
 			p.post_id,
-			p.post_name,
-			pa.passage_id
+			p.post_name
 		FROM
 			posts p
-		JOIN
-			passages pa
-		ON
-			p.post_id = pa.post_id
-		WHERE
-			pa.main = "1"
-		AND
+        WHERE
 			p.post_id NOT IN ('.$not.')
 		ORDER BY p.likes
 		LIMIT 5

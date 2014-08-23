@@ -1,10 +1,16 @@
-body {	text-align: center;
-	background-image: url('http://humor.ru/images/main/background.jpg');	}
+body {
+	text-align: center;
+	background-image: url('../images/main/background.jpg');
+	}
 .docbody {width: 900px; position: relative;}
 .headerArea {height: 100px;}
-.header {	text-align: left;	width: 996px;
-	height: 100px;	}
-.content {	position: absolute;
+.header {
+	text-align: left;
+	width: 996px;
+	height: 100px;
+	}
+.content {
+	position: absolute;
 	text-align: left;
 	width: 996px;
 	background: #fff;
@@ -13,86 +19,152 @@ body {	text-align: center;
 .maincontent {
 	position: relative;
 	width: 600px;
-	padding: 15px;	}
-.rightcontent {	padding: 30px 0px;
-	position: absolute;top: 0px;left: 630px;background-color: whitesmoke;width: 366px;height: 100%;border-left: 1px solid #eee;	}
-.footer {	position: absolute;
+	padding: 15px;
+	}
+.rightcontent {
+	padding: 30px 0px;
+	position: absolute;top: 0px;left: 630px;background-color: whitesmoke;width: 366px;height: 100%;border-left: 1px solid #eee;
+	}
+.footer {
+	position: absolute;
 	//left: 0;
-	bottom: 0px;	}
-.footerLinks {	float: left;	}
-.post {	margin: 20px 0;	}
-h1 {	margin: 5px 10px;	font-family:  Lucida Sans Unicode, Lucida Grande, sans-serif;
+	bottom: 0px;
+	}
+.footerLinks {
+	float: left;
+	}
+.post {
+	margin: 20px 0;
+	}
+h1 {
+	margin: 5px 10px;
+	font-family:  Lucida Sans Unicode, Lucida Grande, sans-serif;
 	letter-spacing: -2px;
 	font-weight: 300;
 	color: #555;
-	font-size: 27px;	}
+	font-size: 27px;
+	}
+h1 a{
+    font-family:  Lucida Sans Unicode, Lucida Grande, sans-serif;
+    letter-spacing: -2px;
+    font-weight: 300;
+    color: #555;
+    font-size: 27px;
+    text-decoration: none;
+}
 .postText {
-	font-family: Tahoma;	font-weight: normal;
+	font-family: Tahoma;
+	font-weight: normal;
 	font-size: 15px;
 	color: #666;
-	padding: 0px 20px 0px 0px;	}
+	padding: 0px 20px 0px 0px;
+	}
 .logo {}
-#logo {	height: 90px;	}
+#logo {
+	height: 90px;
+	}
 
-.page {	margin: 0px auto;
+.page {
+	margin: 0px auto;
 	padding-left: 0px;
 	padding-right: 0px;
-	width: 996px;	}
+	width: 996px;
+	}
 .contentArea {text-align: center;}
-.bigImg {	width: 570px;
+.bigImg {
+	width: 570px;
 	height: auto;
 	vertical-align: baseline;
 	overflow: hidden;
 	margin: 0px;
-	padding: 0px;	}
-.cutImg {	height: 192px;
+	padding: 0px;
+	}
+.cutImg {
+	height: 192px;
 	overflow: hidden;
 	vertical-align: baseline;
 	margin: 10px 0px;
-	padding: 0px;	}
-.fullsizeImg {	max-width: 570px;	}
-.readMore {	text-align: right;	}
-.readMore a {	//color: green;
+	padding: 0px;
+	}
+.fullsizeImg {
+	max-width: 570px;
+	}
+.readMore {
+	text-align: right;
+	}
+.readMore a {
+	//color: green;
 	text-decoration: none;
 	font-size: 15px;
 	font-family: tahoma;
-	font-weigth: 100;	}
-.dateIcon {	vertical-align: middle;	width: 23px;
+	font-weigth: 100;
+	}
+.dateIcon {
+	vertical-align: middle;
+	width: 23px;
 	height: 23px;
-	opacity: 0.8;	}
+	opacity: 0.8;
+	}
 .postDate {
 	color: #777;
 	margin: 4px 0;
 }
-.pageList {	margin: auto;
-	text-align: center;	}
-.pageBut, #firstBut, #prevBut, #nextBut, #lastBut {	float: left;
+.pageList {
+	margin: auto;
+	text-align: center;
+	}
+.pageBut, #firstBut, #prevBut, #nextBut, #lastBut {
+	float: left;
 	padding: 4px 6px;
 	margin: 3px;
 	background-color: red;
 	color: white;
 	text-decoration: none;
-	font-family: Tahoma;	}
-#activePageBut {	background-color: #777;	}
-.blockedPageBut#firstBut, .blockedPageBut#prevBut, .blockedPageBut#nextBut, .blockedPageBut#lastBut  {	background-color: #ccc;	}
-.rightPost {	margin: 40px 0;	}
-.medImg {	text-align: center;
-	height: 200px;
-	overflow: hidden;	}
-.mediumImg {	width: 300px;	}
-.rightText {	text-align: justify;
-	margin: 4px 35px;	font-family: Tahoma;
+	font-family: Tahoma;
+	}
+#activePageBut {
+	background-color: #777;
+	}
+.blockedPageBut#firstBut, .blockedPageBut#prevBut, .blockedPageBut#nextBut, .blockedPageBut#lastBut  {
+	background-color: #ccc;
+	}
+.rightPost {
+	margin: 40px 0;
+	}
+.medImg {
+	text-align: center;
+	overflow: hidden;
+	}
+.medImg img {
+    max-width: 320px;
+    max-height: 150px;
+}
+.rightText {
+	text-align: justify;
+	margin: 4px 35px;
+	font-family: Tahoma;
 	font-weight: 600;
 	font-size: 15px;
-	color: #666;	}
-.passageText {	margin: 20px;
+	color: #666;
+	}
+.rightText a{
+    font-family: Tahoma;
+    font-weight: 600;
+    font-size: 15px;
+    color: #666;
+    text-decoration: none;
+}
+.passageText {
+	margin: 20px;
 	color: #777;
 	font-family: Tahoma;
 	font-weight: 600;
-	font-size: 18px;	}
+	font-size: 18px;
+	}
 
 
-
+
+
 
 
 
