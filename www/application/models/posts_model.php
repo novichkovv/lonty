@@ -10,7 +10,8 @@ class posts_model extends Model
 	}
 
 	function getPosts($limitStart, $limit)
-	{		$query="SELECT * FROM
+	{
+		$query="SELECT * FROM
 			 		(SELECT * FROM posts
 				LIMIT $limitStart, $limit) p
 			 	LEFT JOIN
@@ -25,9 +26,21 @@ class posts_model extends Model
 				ORDER BY p.post_date DESC
 			 	";
 		$row=$this->getAll($query, true);
-		return($row);	}
+		return($row);
+	}
+
+    function countPosts()
+    {
+        $query = '
+        SELECT COUNT(*) as count FROM posts
+        ';
+        $tmp = $this->getRow($query);
+        return $tmp[0];
+    }
+
     function getPost($id)
-    {    	$query = '
+    {
+    	$query = '
     	SELECT
     		p.post_name as name,
     		p.post_epilog as epilog,
@@ -54,9 +67,11 @@ class posts_model extends Model
  		WHERE p.post_id = "'.$id.'"
     	';
     	$row = $this->getAll($query);
-		return($row);    }
+		return($row);
+    }
 	function getRightPosts($not)
-	{		$query = '
+	{
+		$query = '
 		SELECT
 			p.post_id,
 			p.post_name,
@@ -75,7 +90,8 @@ class posts_model extends Model
 		LIMIT 5
 		';
 		$row = $this->getAll($query);
-		return($row);	}
+		return($row);
+	}
 	public function getPostsList()
 	{
 		$query = '
@@ -100,9 +116,11 @@ class posts_model extends Model
 
 		';
 		$row = $this->getAll($query);
-		return $row;	}
+		return $row;
+	}
 	function getPostsNoPassages()
-	{		$query = '
+	{
+		$query = '
 		SELECT p.post_id, p.post_name, p.post_date, GROUP_CONCAT( DISTINCT r.rubric_name
 		ORDER BY r.rubric_name ASC
 		SEPARATOR ", " ) as rubric_name
@@ -119,13 +137,19 @@ class posts_model extends Model
 		ORDER BY p.post_date
 		';
 		$row = $this->getAll($query);
-		return $row;	}
+		return $row;
+	}
 	public function rules()
-	{		return array('post_name'=>array('require'));	}
+	{
+		return array('post_name'=>array('require'));
+	}
 	public function attributes()
-	{		return array('post_name'=>'Заголовок поста');	}
+	{
+		return array('post_name'=>'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ');
+	}
 	public static function fields()
-	{		$fields=array(
+	{
+		$fields=array(
 			 'post_id'=>'post_id',
 			 'post_name'=>'name',
 			 'post_epilog'=>'epilog',
@@ -134,7 +158,8 @@ class posts_model extends Model
 			 'likes'=>'likes',
 			 'pk'=>'post_id'
 			 );
-		return $fields;	}
+		return $fields;
+	}
 	public static function relations()
 	{
 		return array(
@@ -148,6 +173,8 @@ class posts_model extends Model
 				'key'=>'post_id',
 				'foreign_key'=>'post_id'
 				),
-			);	}
+			);
+	}
+
 }
 ?>

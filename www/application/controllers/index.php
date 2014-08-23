@@ -3,111 +3,162 @@ class index_Controller extends Controller
 {
 	public function index($args='')
 	{
+        $this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
+        /*
+         * Алгоритм пагинатора
+         */
 		(isset($args[0]))?$page=$args[0]:$page=1;
-		$this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
-		//$post_model=new posts_model;
+        $limit = 1;
 
-		$limit=1;
-		$limitStart=$limit*$page-$limit;
-		$postsAmount = $post_model->countPosts();;
-		$count=1;
-		$post=array();
-		$post_id=array();
-		$posts = $post_model->getPosts($limitStart, $limit);
-		$ids=array();
-		foreach($posts as $k=>$row)
-		{
-			foreach($row as $key=>$vol)
-			{
-				if(($key=='post_id' || $key=='post_date' || $key=='post_epilog' || $key=='post_prolog' || $key=='post_name' || $key=='likes'
-				||$key=='passage_id' || $key=='passage_header' || $key=='passage_text' || $key=='passage_imgtype' || $key=='passage_copyright'))
-				{
-					$post[$row['post_id']][$key]=$vol;
-					$ids[$row['post_id']] = $row['post_id'];
-				}
-				if(($key=='rubric_name' || $key=='rubric_id'))
-					$post[$row['post_id']]['rubric'][$count][$key]=$vol;
-			}
-			$count++;
-		}
-        $rightPosts = $post_model->getRightPosts(implode(',',$ids));
+        $post_model=new posts_model;
+        $count_posts = $post_model->countPosts();
+        $limit_start = $page*10;
+        $pages_num = ceil($count_posts/$limit);
+        $pag = array();
+        $pag['page'] = $page;
+        $pag['last'] = $pages_num;
 
-		$this->view('index', array('posts'=>$post,
-								   'rightPosts' => $rightPosts,
-								   'page'=>$page,
-								   'postsAmount'=>$postsAmount,
-								   'limit'=>$limit));
+        if($page == 1)$pag['unprev'] = true;
+        if($page == $pages_num)$pag['unnext'] = true;
+        if($page == 1)$pag['unfirst'] = true;
+        if($page == $pages_num)$pag['unlast'] = true;
+        $pages = array();
+        $cp = $page-2;
+        switch($page)
+        {
+            case "1":
+                $cp = 1;
+            break;
+            case "2":
+                $cp = 1;
+            break;
+            case $pages_num:
+                $cp = $pages_num-4;
+            break;
+            case $pages_num-1:
+                $cp = $pages_num-4;
+
+        }
+        for($i = $cp; $i<=$pages_num && $i<=$cp+4; $i++)
+        {
+            $pages[] = $i;
+        }
+        print_r($pag);
+        print_r($pages);
+        $posts = $post_model->getAllWithRels();
+        $ids = array();
+        foreach($posts as $k=>$v)
+        {
+            $ids[] = $k;
+        }
+        $id = implode(',', $ids);
+        $right_posts = $post_model->getRightPosts($id);
+        $this->t->assign('posts', $posts);
+        $this->t->assign('pages', $pages);
+        $this->t->assign('page', $page);
+        $this->t->assign('pag', $pag);
+        $this->t->assign('right_posts', $right_posts);
+
+//		$limit=1;
+//		$limitStart=$limit*$page-$limit;
+//		$postsAmount = $posts_model->countPosts();;
+//		$count=1;
+//		$post=array();
+//		$post_id=array();
+//		$posts = $post_model->getPosts($limitStart, $limit);
+//		$ids=array();
+//		foreach($posts as $k=>$row)
+//		{
+//			foreach($row as $key=>$vol)
+//			{
+//				if(($key=='post_id' || $key=='post_date' || $key=='post_epilog' || $key=='post_prolog' || $key=='post_name' || $key=='likes'
+//				||$key=='passage_id' || $key=='passage_header' || $key=='passage_text' || $key=='passage_imgtype' || $key=='passage_copyright'))
+//				{
+//					$post[$row['post_id']][$key]=$vol;
+//					$ids[$row['post_id']] = $row['post_id'];
+//				}
+//				if(($key=='rubric_name' || $key=='rubric_id'))
+//					$post[$row['post_id']]['rubric'][$count][$key]=$vol;
+//			}
+//			$count++;
+//		}
+//        $rightPosts = $post_model->getRightPosts(implode(',',$ids));
+//
+//		$this->view('index', array('posts'=>$post,
+//								   'rightPosts' => $rightPosts,
+//								   'page'=>$page,
+//								   'postsAmount'=>$postsAmount,
+//								   'limit'=>$limit));
 	}
 	public function post($args='')
 	{
 		$id=$page=$args[0];
 		$post_model=new posts_model;
-		$query="SELECT * FROM
-			 		posts p
-			 	LEFT JOIN
-			 	(SELECT * FROM
-			 		passages) pa
-			 		ON p.post_id=pa.post_id
-			 	LEFT JOIN postrubrics pr
-			 		ON p.post_id=pr.post_id
-			 	LEFT JOIN rubrics r
-			 		ON pr.rubric_id=r.rubric_id
-				WHERE p.post_id=$id
-			 	";
-		$res=mysql_query($query) or die(mysql_error());
-		$first=true;
-		$first=true;
-		$post=array();
-		$post_id=array();
-		$passage_id=array();
-		$rubric_id=array();
-		$count=0;
-		while($row=mysql_fetch_assoc($res))
-		{
-			foreach($row as $key=>$vol)
-			{
-				if(($key==='post_id' || $key=='post_date' || $key=='post_epilog' || $key=='post_prolog' || $key=='post_name' || $key=='likes') && !in_array($row['post_id'], $post_id))
-					$post[$key]=$vol;
-				if(($key=='passage_id' || $key=='passage_header' || $key=='passage_text' || $key=='passage_imgtype' || $key=='passage_copyright') && !in_array($row['passage_id'], $passage_id))
-					$post['passage'][$count][$key]=$vol;
-				if(($key=='rubric_name' || $key=='rubric_id') && !in_array($row['rubric_id'], $rubric_id))
-					$post['rubric'][$count][$key]=$vol;
-			}
-			$post_id[]=$row['post_id'];
-			$passage_id[]=$row['passage_id'];
-			$rubric_id[]=$row['rubric_id'];
-			$count++;
-			/*echo '<tr>';
-			if($first)
-			{
-				foreach($row as $key=>$vol)
-				{
-					echo '<td>'.$key.'</td>';
-				}
-				echo '<tr>';
-				foreach($row as $key=>$vol)
-				{
-					echo '<td>'.mb_substr($vol, 0, 10, 'utf-8').'</td>';
-				}
-				echo '</tr>';
-			}
-			else
-			{
-				foreach($row as $key=>$vol)
-				{
-					echo '<td>'.mb_substr($vol, 0, 10, 'utf-8').'</td>';
-				}
-			}
-			echo '</tr>'; */
-        	//$r[]=$row;
-        	//$first=false;
-		}
+        $posts = $post_model->getAllWithRels();
+        print_r($posts);
+//		$query="SELECT * FROM
+//			 		posts p
+//			 	LEFT JOIN
+//			 	(SELECT * FROM
+//			 		passages) pa
+//			 		ON p.post_id=pa.post_id
+//			 	LEFT JOIN postrubrics pr
+//			 		ON p.post_id=pr.post_id
+//			 	LEFT JOIN rubrics r
+//			 		ON pr.rubric_id=r.rubric_id
+//				WHERE p.post_id=$id
+//			 	";
+//		$res=mysql_query($query) or die(mysql_error());
+//		$first=true;
+//		$first=true;
+//		$post=array();
+//		$post_id=array();
+//		$passage_id=array();
+//		$rubric_id=array();
+//		$count=0;
+//		while($row=mysql_fetch_assoc($res))
+//		{
+//			foreach($row as $key=>$vol)
+//			{
+//				if(($key==='post_id' || $key=='post_date' || $key=='post_epilog' || $key=='post_prolog' || $key=='post_name' || $key=='likes') && !in_array($row['post_id'], $post_id))
+//					$post[$key]=$vol;
+//				if(($key=='passage_id' || $key=='passage_header' || $key=='passage_text' || $key=='passage_imgtype' || $key=='passage_copyright') && !in_array($row['passage_id'], $passage_id))
+//					$post['passage'][$count][$key]=$vol;
+//				if(($key=='rubric_name' || $key=='rubric_id') && !in_array($row['rubric_id'], $rubric_id))
+//					$post['rubric'][$count][$key]=$vol;
+//			}
+//			$post_id[]=$row['post_id'];
+//			$passage_id[]=$row['passage_id'];
+//			$rubric_id[]=$row['rubric_id'];
+//			$count++;
+//			/*echo '<tr>';
+//			if($first)
+//			{
+//				foreach($row as $key=>$vol)
+//				{
+//					echo '<td>'.$key.'</td>';
+//				}
+//				echo '<tr>';
+//				foreach($row as $key=>$vol)
+//				{
+//					echo '<td>'.mb_substr($vol, 0, 10, 'utf-8').'</td>';
+//				}
+//				echo '</tr>';
+//			}
+//			else
+//			{
+//				foreach($row as $key=>$vol)
+//				{
+//					echo '<td>'.mb_substr($vol, 0, 10, 'utf-8').'</td>';
+//				}
+//			}
+//			echo '</tr>'; */
+//        	//$r[]=$row;
+//        	//$first=false;
+//		}
 		//print_r($post);
 		//echo ('</table>');
-        $rightPosts = $post_model->getRightPosts($id);
-		$this->view('post', array('post'=>$post,
-							      'rightPosts' => $rightPosts,
-								  ));
+
 	}
 	public function rubric($args='')
 	{

@@ -13,6 +13,7 @@ $router = new Router($registry);
 $registry->set ('Router', $router);
 // задаем путь до папки контроллеров.
 $router->setPath (SITE_PATH . DS . 'application' . DS . 'controllers');
+session_start();
 // запускаем маршрутизатор
 $router->start();
 ?>

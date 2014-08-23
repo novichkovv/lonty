@@ -3,6 +3,7 @@
 {else}
 	<div class="form-editable editPost">
 		<input name="temp" id="temp" type="hidden" value="{$temp}">
+		<input name="post_id" id="post_id" type="hidden" value="{$get[0]}">
 		<div class="rubrics editable editable-list" data-type="checkbox" action="postrubrics" key="{$get[0]}" keyword="post_id">
 			{foreach from=$posts.rubrics item=item}
 				{$item.rubric}
@@ -41,6 +42,9 @@
  			{if $passage.text}{$passage.text}{else}<b class="btn small">добавить текст</b>{/if}
        	</div>
 		{/foreach}
+		<div class="passage">
+			<div class="button addPassage">Дабавить абзац</div>
+		</div>
 		<div class="postText editable" action="posts" key="{$get[0]}" data-type="textarea" name="posts[post_prolog]"  style="margin: 40px 100px;">
 			{$posts.prolog}
 		</div>

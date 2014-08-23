@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-15 18:24:33
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-21 23:04:42
          compiled from "Z:\home\lonty.sru\www\application\templates\admin\editpost.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:975553e535d719e118-03907685%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8bd52dc8d32f2f6ed64c8ecee96195f696cfe3ee' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\admin\\editpost.tpl',
-      1 => 1408112669,
+      1 => 1408647281,
       2 => 'file',
     ),
   ),
@@ -35,6 +35,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php } else { ?>
 	<div class="form-editable editPost">
 		<input name="temp" id="temp" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['temp']->value;?>
+">
+		<input name="post_id" id="post_id" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['get']->value[0];?>
 ">
 		<div class="rubrics editable editable-list" data-type="checkbox" action="postrubrics" key="<?php echo $_smarty_tpl->tpl_vars['get']->value[0];?>
 " keyword="post_id">
@@ -110,6 +112,9 @@ images/pictures/big/<?php echo $_smarty_tpl->tpl_vars['posts']->value['post_id']
 <?php } else { ?><b class="btn small">добавить текст</b><?php }?>
        	</div>
 		<?php } ?>
+		<div class="passage">
+			<div class="button addPassage">Дабавить абзац</div>
+		</div>
 		<div class="postText editable" action="posts" key="<?php echo $_smarty_tpl->tpl_vars['get']->value[0];?>
 " data-type="textarea" name="posts[post_prolog]"  style="margin: 40px 100px;">
 			<?php echo $_smarty_tpl->tpl_vars['posts']->value['prolog'];?>

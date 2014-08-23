@@ -70,7 +70,7 @@ Class Router
         }
 
         include ($file);
-
+        $controller_name = $controller;
         $class = $controller.'_Controller';
         $controller = new $class($this->registry);
 
@@ -88,6 +88,7 @@ Class Router
          {
          	exit;
          }
+        $controller->t->assign('part', array($controller_name, $action));
         $controller->t->assign('title',$controller->title);
         $controller->meta();
         $controller->style();
