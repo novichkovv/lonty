@@ -174,7 +174,7 @@ class admin_controller extends controller
             $new_img  = 'http://'.$_SERVER['HTTP_HOST'].'/images/pictures/big/'.$_POST['superkey'].'/'.$_POST['key'].'.'.$type;
 			echo ('
 			<img src="http://'.$_SERVER['HTTP_HOST'].'/'.$name.'.'.$type.'?'.rand().'" />
-			<input form-group="img" name="img" type="hidden" value="'.$name.'" />
+			<input class="loaded_image_name" form-group="img" name="img" type="hidden" value="'.$name.'" />
 			<input type="hidden" name="new_img_name" form-group="img" value="'.$new_img.'" />
 			<input type="hidden" name="img_type" form-group="img" value="'.$type.'" />
 			');
@@ -221,16 +221,58 @@ class admin_controller extends controller
 
 			case "save_img":
 				if(file_exists(SITE_PATH.DS.$_POST['img'].'.'.$_POST['img_type']))
-				{					$new_img = SITE_PATH.DS.'images'.DS.'pictures'.DS.'big'.DS.$_POST['superkey'].DS.$_POST['key'].'.'.$_POST['img_type'];
+				{
+					$new_img = SITE_PATH.DS.'images'.DS.'pictures'.DS.'big'.DS.$_POST['superkey'].DS.$_POST['key'].'.'.$_POST['img_type'];
 					if(@copy(SITE_PATH.DS.$_POST['img'].'.'.$_POST['img_type'], $new_img))
 					{
+						$model = new passages_model();
+						$term = "WHERE passage_id='".$_POST['key']."'";
+						$_POST['passages']['passage_imgtype'] = $_POST['img_type'];
+						$model->update($term);
 						echo SITE_DIR.'images/pictures/big/'.$_POST['superkey'].'/'.$_POST['key'].'.'.$_POST['img_type'].'?'.rand();
-						($_POST['img_type'] == 'jpg' ? $type = 'gif' : $type = 'jpg';
-						if(file_exists(SITE_PATH.DS.$_POST['img'].'.'.$type))
-							unlink(SITE_PATH.DS.$_POST['img'].'.'.$type);
+						($_POST['img_type'] == 'jpg' ? $type = 'gif' : $type = 'jpg');
+						if(file_exists(SITE_PATH.DS.'images/pictures/big/'.$_POST['superkey'].'/'.$_POST['key'].'.'.$type))
+						{
+							unlink(SITE_PATH.DS.'images/pictures/big/'.$_POST['superkey'].'/'.$_POST['key'].'.'.$type);
+						}
 					}
-				}
+
+				}
+
                 exit;
+			break;
+			case "add_passage":
+               // print_r($_POST);
+				$model = new passages_model();
+				if($_POST['passages']['main'] == 'undefined')$_POST['passages']['main'] = 0;
+				if($id = $model->insert())
+				{
+					$img = SITE_PATH.DS.$_POST['imgname'].'.'.$_POST['passages']['passage_imgtype'];
+					$dir = SITE_PATH.DS.'images/pictures/big/'.$_POST['passages']['post_id'].'/';
+					if(file_exists($img))
+					{
+                        if(!file_exists($dir))mkdir($dir, 0777, true);
+                        copy($img, $dir.$id.'.'.$_POST['passages']['passage_imgtype']);
+                        $file_dir = SITE_DIR.'images/pictures/big/'.$_POST['passages']['post_id'].'/'.$id.'.'.$_POST['passages']['passage_imgtype'];
+						($_POST['passages']['passage_imgtype'] == 'jpg' ? $type = 'gif' : $type = 'jpg');
+						if(file_exists($dir.$id.'.'.$type))
+							unlink($dir.$id.'.'.$type);
+						if($_POST['passages']['main'])
+						{
+							$image = new image();
+							$image->load($dir.$id.'.jpg');
+							$image->crop(300);
+							$image_name = SITE_PATH.DS.'images/pictures/bigCut/';
+                            if(!file_exists($image_name))mkdir($image_name,0777,true);
+							$image->save($image_name.$_POST['passages']['post_id'].'.jpg');
+						}
+					}
+                    $passage = $model->select_all(array('passage_id'=>$id));
+                    $this->t->assign('temp', rand());
+                    $this->t->assign('passage', $passage[0]);
+                    $this->t->display('admin/ajax_passage.tpl');
+				}
+				//exit;
 			break;
 		}
 	}
@@ -248,5 +290,21 @@ class admin_controller extends controller
 		echo $_POST[$table][key($_POST[$table])];
 		exit;
 	}
+
+    public function registrate()
+    {
+        $this->styles=array('admin');
+        $model = new users_model();
+        //$model->rules();
+        if(isset($_POST['auth']))
+        {
+            $user = $model->select_all(array('login' => $_POST['login'],'password' => $_POST['password']));
+            if($user)
+            {
+                $_SESSION['user'] = $user;
+                header('Location: '.SITE_DIR.'admin/index');
+            }
+        }
+    }
 }
 ?>

@@ -5,9 +5,13 @@ $j(document).ready(function()
 	addPassage();
 	addRubricForm();
 	$j(".example_button").click(function(event)
-	{		//alert($j(this).attr('class'));//slideToggle(100);		$j(this).parent().children().each(function(event)
-		{			$j(this).slideToggle(100);
-		});	});
+	{
+		//alert($j(this).attr('class'));//slideToggle(100);
+		$j(this).parent().children().each(function(event)
+		{
+			$j(this).slideToggle(100);
+		});
+	});
 	$j("#addpostform").submit(function()
 	{
 		var rubric_check = false;
@@ -21,8 +25,10 @@ $j(document).ready(function()
 			return false;
 		}
 		if(!$j("#post_name").val())
-		{			alert('Нужно ввести хотя бы название!');
-			return false;		}
+		{
+			alert('Нужно ввести хотя бы название!');
+			return false;
+		}
 	});
 });
 function addRubricForm()
@@ -138,7 +144,7 @@ function addPassage()
 		 	<div class="label">\
 			название абзаца:\
 			</div>\
-		 	<textarea name="passages['+id+'][passage_header]" cols="50" rows="3"></textarea>\
+		 	<textarea name="passages[passage_header]" cols="50" rows="3"></textarea>\
 		 	<div class="label">\
 			Добавьте изображение:\
 			</div>\
@@ -168,9 +174,107 @@ function addPassage()
         $j(".passages").append(passageHtml);
         $j(".addMP#"+oldid).remove();
         loadPicture();
-        addPassage();
+        //addPassage();
 	});
 }
 function editRubrics()
-{	$j(".rubrics").click(function()
-	{		$j(".editable-data").slideDown(200);	});}
+{
+	$j(".rubrics").click(function()
+	{
+		$j(".editable-data").slideDown(200);
+	});
+}
+function addPassage()
+{
+	$j("body").on('click', '.addPassage', function()
+	{
+		var temp = $j("#temp").val();
+		var passageHtml='\
+		<div class="label">\
+            Заголовок:       \
+        </div>               \
+        <textarea name="passages[passage_header]" id="passage_header" cols="60" rows="2"></textarea>           \
+        <div class="example">                                                                                                            \
+	        <div class="example_button">                                                                                                  \
+	        	развернуть                                                                                                                 \
+	        </div>                                                                                                                          \
+	        <div class="examle_holder">                                                                                                      \
+	        	<textarea cols="60" rows="2">                                                                                                 \
+	        	</textarea>                                                                                                                    \
+	        </div>                                                                                                                              \
+	        <div class="example_button hide">                                                                                                   \
+	        	свернуть                                                                                         \
+	        </div>                                                                                                \
+	    </div>                         \
+		<div class="fullsizeImg">\
+					<div class="imgForm">\
+					<input type="hidden" value="79" group="img" name="key">\
+					<input type="hidden" value="23" group="img" name="superkey">\
+					Тип изображения: \
+					<input type="radio" value="jpg" name="passages[79][passage_imgtype]" class="img-type" checked>\
+						jpg\
+					<input type="radio" value="gif" name="passages[79][passage_imgtype]" class="img-type">\
+						gif<br>			                                                                   \
+					Пометить как главное:                                                                   \
+					<input type="checkbox" value="1" id="main" name="passages[79][main]">		 	                    \
+					<div class="aPhoto" id="addphoto79">		     	                                     \
+						<div class="upload" id="upload79">		 			                                  \
+							<span imgname="temp1712579" class="loadButton" id="span79">Загрузить</span>		 \
+						</div>		 		                                                                  \
+						<div class="preview" id="preview79">			                                       \
+							<img src="http://www.lonty.sru/images/pictures/big/23/79.jpg?17125" id="editable-preview-img"> \
+							<input type="hidden" value="http://www.lonty.sru/images/pictures/big/23/79.jpg?17125" name="imgName[79]" class="imgName">		\
+							<span class="status" id="status79"></span>		    	                                                                         \
+						</div>		    	                                        \                                                                             \
+				</div><!--addphoto-->	  	 	                                                              \
+			</div><!--imgForm-->			                                                                   \
+		</div>\
+		<div class="label">\
+            Текст:       \
+        </div>               \
+        <textarea name="passages[passage_text]" id="passage_text" cols="60" rows="2"></textarea>           \
+        <div class="example">                                                                                                            \
+	        <div class="example_button">                                                                                                  \
+	        	развернуть                                                                                                                 \
+	        </div>                                                                                                                          \
+	        <div class="examle_holder">                                                                                                      \
+	        	<textarea cols="60" rows="2">                                                                                                 \
+	        	</textarea>                                                                                                                    \
+	        </div>                                                                                                                              \
+	        <div class="example_button hide">                                                                                                   \
+	        	свернуть                                                                                         \
+	        </div>                                                                                                \
+	    </div>   \
+	    <div class="buttons">                                            \
+		    <button action="save_img" class="btn btn-default" id="add_passage_btn">Сохранить</button>\
+		    <button class="btn btn-cancel" id="cancel_passage">Отменить</button> 		    	       \
+		</div>                            ';
+		var container = $j(this).parent();
+		$j(container).html(passageHtml);
+		loadPicture();
+		$j("body").on('click', "#cancel_passage", function()
+		{
+			$j(this).parent().parent().html('<div class="button addPassage">Дабавить абзац</div>');
+		});
+	});
+	$j("body").on('click', "#add_passage_btn", function()
+	{
+		var data;
+		data = 'passages[passage_header]=' + $j("#passage_header").val();
+		data += '&passages[main]=' + $j("#main:checked").val();
+		data += '&passages[passage_text]=' + $j("#passage_text").val();
+		data += '&passages[passage_imgtype]=' + $j(".img-type:checked").val();
+		data += '&imgname=' + $j(".loaded_image_name").val();
+		data += '&passages[post_id]=' + $j("#post_id").val();
+		data += '&action=add_passage';
+		$j.ajax({
+				url: '../ajax/',
+				type: "post",
+				data: data,
+				success: function(result)
+				{
+                    $j(".passage").last().html(result);
+				}
+			});
+	});
+}

@@ -214,6 +214,7 @@ class Model
 			$query="INSERT INTO $table SET $data ";
 			//echo $query;
 			mysql_query($query) or $this->mysqlError();
+			return mysql_insert_id();
 		}
 	}
 	public function safetyCheck($data)
@@ -258,6 +259,21 @@ class Model
 		return $fields;
 
 	}
+    public function select_all($term = false)
+    {
+        if($term)
+        {
+            $where = array();
+            foreach($term as $k=>$v)
+            {
+                $where[] = $k.'="'.$v.'"';
+            }
+            if($where)$where = "WHERE ".implode(' AND ', $where);
+        }
+        $query = 'SELECT * FROM '.$this->table.' '.($where ? $where : '').'';
+        $row = $this->getAll($query);
+        return($row);
+    }
 	public function getAllWithRels($id='')
 	{
 		$result = array();

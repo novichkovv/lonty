@@ -28,7 +28,9 @@
 	<div class="contentArea">
 	    <div class="page">
 	    	<div class="content">
-    		{if $template_dir eq $fof}
+            {if $part.0 eq 'admin' && !$auth}
+                {include file='admin/login_form.tpl'}
+    		{elseif $template_dir eq $fof}
 	    		<div align="center">
 	    			<h1>Ошибка 404</h1>
 	    			</h1>Страница не существует!</h1>

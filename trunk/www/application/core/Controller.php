@@ -47,7 +47,7 @@ Abstract Class Controller {
         $template_dir = SITE_PATH.DS.'application'.DS.'templates'.DS.strtolower($view).DS.strtolower($name).'.tpl';
         $this->t->assign('fof', SITE_PATH.DS.'application'.DS.'templates'.DS.$view.DS.'not_found.tpl');
 		$this->t->assign('template_dir', $template_dir);
-
+        if($_SESSION['user'])$this->t->assign('auth', 1);
 		$this->style();
         $this->scripts();
 
