@@ -3,7 +3,7 @@ class admin_controller extends controller
 {
 	public function index($vars='')
 	{
-		$this->styles=array('admin, style');
+		$this->styles=array('admin');
         $this->scripts=array();
 		$this->title='ЛОНТИ - самые любопытные вещи, явления и истории из веба';
   		$model = new posts_model;

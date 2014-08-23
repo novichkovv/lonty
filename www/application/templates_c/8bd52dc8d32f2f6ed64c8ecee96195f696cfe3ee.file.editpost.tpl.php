@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-21 23:04:42
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-23 23:09:19
          compiled from "Z:\home\lonty.sru\www\application\templates\admin\editpost.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:975553e535d719e118-03907685%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8bd52dc8d32f2f6ed64c8ecee96195f696cfe3ee' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\admin\\editpost.tpl',
-      1 => 1408647281,
+      1 => 1408799759,
       2 => 'file',
     ),
   ),

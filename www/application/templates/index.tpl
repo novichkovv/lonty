@@ -8,7 +8,6 @@
     {foreach from=$meta item=meta}
         {$meta}
     {/foreach}
-  	<link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/css/style.css" />
     {$style}
     {$scripts}
     <!--<script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>-->
