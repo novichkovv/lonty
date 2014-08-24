@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-23 23:13:47
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 12:18:18
          compiled from "Z:\home\lonty.sru\www\application\templates\index\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1832953f89b357a3c88-92715620%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd4ac8d4c81b1e87a7d00d3e56d6d4d49b901a43b' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\index\\index.tpl',
-      1 => 1408821226,
+      1 => 1408868290,
       2 => 'file',
     ),
   ),
@@ -146,6 +146,8 @@ index/index/<?php echo $_smarty_tpl->tpl_vars['pag']->value['last'];?>
 </div><!--pagelist-->
 </div><!--maincontent-->
 <div class="rightcontent">
+    <div align="center"><h1>Lonty Рекоммендует</h1></div>
+
     <?php  $_smarty_tpl->tpl_vars['post'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['post']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['right_posts']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['post']->key => $_smarty_tpl->tpl_vars['post']->value) {
@@ -169,20 +171,7 @@ index/post/<?php echo $_smarty_tpl->tpl_vars['post']->value['post_id'];?>
         </div>
     </div>
     <?php } ?>
-    <script type="text/javascript">/
 
-
-
-
-
-
-
-
-
-
-
-
-   
     
     
         

@@ -280,10 +280,10 @@ class admin_controller extends controller
 	public function ajaxEditable()
 	{
 		$table = $_POST['action'];
-		$data = key($_POST[$table]).'="'.mysql_real_escape_string($_POST[$table][key($_POST[$table])]).'"';
 		$model = $table.'_model';
 		$model = new $model;
 		$fields = $model->getFields();
+        $data = key($_POST[$table]).'="'.mysql_real_escape_string($_POST[$table][key($_POST[$table])]).'"';
 		$pk = $fields['pk'];
 		$query = 'UPDATE '.$table.' SET '.$data.' WHERE '.$pk.'="'.$_POST['key'].'"';
 		$model->query($query);

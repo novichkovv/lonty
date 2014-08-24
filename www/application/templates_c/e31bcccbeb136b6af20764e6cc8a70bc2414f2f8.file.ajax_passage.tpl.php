@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-22 00:16:11
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 11:03:53
          compiled from "Z:\home\lonty.sru\www\application\templates\admin\ajax_passage.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1165553f64a03c3cbf1-92285315%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e31bcccbeb136b6af20764e6cc8a70bc2414f2f8' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\admin\\ajax_passage.tpl',
-      1 => 1408652151,
+      1 => 1408801578,
       2 => 'file',
     ),
   ),

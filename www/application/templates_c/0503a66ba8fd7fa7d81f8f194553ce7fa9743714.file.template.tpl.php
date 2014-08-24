@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-23 17:33:11
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 12:18:46
          compiled from "Z:\home\lonty.sru\www\application\templates\template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1507653f7d4cb156a76-05896699%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0503a66ba8fd7fa7d81f8f194553ce7fa9743714' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\template.tpl',
-      1 => 1408799759,
+      1 => 1408868324,
       2 => 'file',
     ),
   ),
@@ -59,7 +59,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
     	<?php echo $_smarty_tpl->tpl_vars['item']->value;?>
 
     <?php } ?>
-    <!--<script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>-->
+    <script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
 </head>
 <body>
 	<div class="headerArea">

@@ -79,6 +79,8 @@
 </div><!--pagelist-->
 </div><!--maincontent-->
 <div class="rightcontent">
+    <div align="center"><h1>Lonty Рекоммендует</h1></div>
+
     {foreach from=$right_posts item=post}
     <div class="rightPost">
         <div class="medImg">
@@ -91,21 +93,8 @@
         </div>
     </div>
     {/foreach}
-    <script type="text/javascript">/
 
-{*//        <!--*}
-{*//*}
-{*//        document.write(VK.Share.button({*}
-{*//            url: 'http://pro-gorod.com',*}
-{*//            title: 'Хороший сайт',*}
-{*//            description: 'Это мой собственный сайт, я его очень долго делал',*}
-{*//            image: 'http://pro-gorod.com/pictures/firmspics/orehovo_zuevo/14.jpg',*}
-{*//            noparse: true*}
-{*//        }));*}
-{*//*}
-{*//        -->*}
-   {*</script>*}
-    {*<div align="center"><h1>Lonty Рекоммендует</h1></div>*}
+    {**}
     {*<div class="rightPost">*}
         {*<div class="medImg">*}
             {*<a href="http://'.$_SERVER['HTTP_HOST'].'/index/post/'.$row['post_id'].'">*}

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 00:04:49
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 12:54:43
          compiled from "Z:\home\lonty.sru\www\application\templates\index\post.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2895353f8e89a88d6c8-27274523%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dd2a28433c99b75e9390a01bf6961bbee1cec049' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\index\\post.tpl',
-      1 => 1408824288,
+      1 => 1408870475,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'post' => 0,
     'passage' => 0,
+    'get' => 0,
+    'description' => 0,
     'right_posts' => 0,
   ),
   'has_nocache_code' => false,
@@ -70,6 +72,28 @@ images/pictures/big/<?php echo $_smarty_tpl->tpl_vars['post']->value[0]['post_id
             </div>
         <?php } ?>
     </div><!--post-->
+    <div align="center">
+    <script type="text/javascript">
+        <!--
+        document.write(VK.Share.button({
+                url: '<?php echo @constant('SITE_DIR');?>
+index/post/<?php echo $_smarty_tpl->tpl_vars['get']->value[0];?>
+',
+                title: '<?php echo $_smarty_tpl->tpl_vars['post']->value[0]['name'];?>
+',
+                description: '<?php echo $_smarty_tpl->tpl_vars['description']->value;?>
+',
+                image: '<?php echo @constant('SITE_DIR');?>
+images/pictures/bigCut/<?php echo $_smarty_tpl->tpl_vars['get']->value[0];?>
+.jpg',
+                noparse: true},
+                    {type: 'custom', text: '<img src="<?php echo @constant('SITE_DIR');?>
+images/main/vk_share.jpg" />'}
+
+        ));
+        -->
+    </script>
+    </div>
 </div><!--maincontent-->
 <div class="rightcontent">
     <div align="center"><h1>Lonty Рекоммендует</h1></div>

@@ -35,6 +35,52 @@ class posts_model extends Model
 		return($row);
 	}
 
+    function getPostsByRubrics($rubric_id, $limit, $limit_start)
+    {
+        $query = '
+            SELECT
+                p.post_id,
+                p.post_name,
+                p.post_epilog,
+                DAY(p.post_date) as day,
+                MONTH(p.post_date) as month,
+                group_concat(distinct concat("<a href=\"'.SITE_DIR.'index/rubrics/",r.rubric_id,"\">",r.rubric_name,"</a>")) rubrics
+            FROM
+                posts p
+            JOIN
+                postrubrics pr
+                ON pr.post_id=p.post_id
+            JOIN
+                rubrics r
+                ON r.rubric_id=pr.rubric_id
+            WHERE r.rubric_id="'.$rubric_id.'"
+            GROUP BY p.post_id
+            ORDER BY p.post_date
+            LIMIT '.$limit_start.', '.$limit.'
+            ';
+            $row=$this->getAll($query, true);
+            return($row);
+    }
+
+    function  countRubricPosts($rubric_id)
+    {
+        $query = '
+            SELECT
+                COUNT(p.post_id)
+            FROM
+                posts p
+            JOIN
+                postrubrics pr
+                ON pr.post_id=p.post_id
+            JOIN
+                rubrics r
+                ON r.rubric_id=pr.rubric_id
+            WHERE r.rubric_id="'.$rubric_id.'"
+            GROUP BY p.post_id';
+            $row = $this->getRow($query);
+        return $row[0];
+    }
+
     function getPost($id)
     {
         $query = '
