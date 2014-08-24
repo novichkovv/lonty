@@ -13,7 +13,7 @@
     {foreach from=$scripts item=item}
     	{$item}
     {/foreach}
-    <!--<script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>-->
+    <script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
 </head>
 <body>
 	<div class="headerArea">

@@ -27,6 +27,21 @@
             </div>
         {/foreach}
     </div><!--post-->
+    <div align="center">
+    <script type="text/javascript">
+        <!--
+        document.write(VK.Share.button({
+                url: '{$smarty.const.SITE_DIR}index/post/{$get[0]}',
+                title: '{$post[0].name}',
+                description: '{$description}',
+                image: '{$smarty.const.SITE_DIR}images/pictures/bigCut/{$get[0]}.jpg',
+                noparse: true},
+                    {literal}{{/literal}type: 'custom', text: '<img src="{$smarty.const.SITE_DIR}images/main/vk_share.jpg" />'{literal}}{/literal}
+
+        ));
+        -->
+    </script>
+    </div>
 </div><!--maincontent-->
 <div class="rightcontent">
     <div align="center"><h1>Lonty Рекоммендует</h1></div>
