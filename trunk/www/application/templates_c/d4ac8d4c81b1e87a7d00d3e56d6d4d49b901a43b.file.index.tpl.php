@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 12:18:18
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 23:25:16
          compiled from "Z:\home\lonty.sru\www\application\templates\index\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1832953f89b357a3c88-92715620%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd4ac8d4c81b1e87a7d00d3e56d6d4d49b901a43b' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\index\\index.tpl',
-      1 => 1408868290,
+      1 => 1408908314,
       2 => 'file',
     ),
   ),
@@ -55,8 +55,8 @@ images/main/dateIcon.png" alt="date" title="Дата" />
 
                 <img class="dateIcon" src="<?php echo @constant('SITE_DIR');?>
 images/main/markIcon.png" alt="date" title="Рубрики" />
-                <?php echo $_smarty_tpl->tpl_vars['post']->value['rubrics'];?>
-
+                <span class="rubrics"><?php echo $_smarty_tpl->tpl_vars['post']->value['rubrics'];?>
+</span>
             </div>
         </div><!--postInfo-->
         <div class="cutImg">

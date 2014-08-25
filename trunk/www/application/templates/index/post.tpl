@@ -1,18 +1,18 @@
 <div class="maincontent">
     <div class="post">
         <h1>
-            <?php echo $post['post_name']; ?>
+            {$post[0].name}
         </h1>
         <div class="postInfo">
             <div class="postDate">
                 <img class="dateIcon" src="{$smarty.const.SITE_DIR}images/main/dateIcon.png" alt="date" title="Дата" />
                 {$post[0].day} {$post[0].month}
                 <img class="dateIcon" src="{$smarty.const.SITE_DIR}images/main/markIcon.png" alt="date" title="Рубрики" />
-                {$post[0].rubrics}
+                <span class="rubrics">{$post[0].rubrics}</span>
             </div>
         </div><!--postInfo-->
         <div class="postText">
-            {$post[0].name}
+            {$post[0].epilog}
         </div>
         {foreach from=$post item=passage}
             <div class="passageText">
@@ -26,6 +26,9 @@
                 {$passage.passage_text}
             </div>
         {/foreach}
+        <div class="postText">
+            {$post[0].prolog}
+        </div>
     </div><!--post-->
     <div align="center">
     <script type="text/javascript">

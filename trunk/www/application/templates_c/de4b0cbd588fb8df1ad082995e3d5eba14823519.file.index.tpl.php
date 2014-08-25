@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-23 23:09:41
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 14:43:22
          compiled from "Z:\home\lonty.sru\www\application\templates\admin\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1350853f8e6f53be6f3-59579706%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'de4b0cbd588fb8df1ad082995e3d5eba14823519' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\admin\\index.tpl',
-      1 => 1408750512,
+      1 => 1408877001,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.19',
+  'unifunc' => 'content_53f8e6f54bb465_89624451',
   'variables' => 
   array (
     'posts' => 0,
@@ -22,17 +24,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'no_pas_posts' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_53f8e6f54bb465_89624451',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53f8e6f54bb465_89624451')) {function content_53f8e6f54bb465_89624451($_smarty_tpl) {?><div class="admin-panel">
+    <span class="active-link">Панель</span>
 	<a class="button-link" href="<?php echo @constant('SITE_DIR');?>
 admin/addpost/">
 		Добавить пост
 	</a>
+    <a class="button-link" href="<?php echo @constant('SITE_DIR');?>
+admin/editpost/">
+        Редатировать пост
+    </a>
 </div>
+<h1>
+    Все посты
+</h1>
 <div class="post-list">
-	<table>
+	<table bordercolor="#ccc" border="1" cellspacing="0">
 		<tr>
 			<th>
 				№
@@ -82,9 +90,9 @@ admin/editpost/<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 	<?php } ?>
 	</table>
 </div>
-<h2>Посты без абзацев</h2>
+<h1>Посты без абзацев</h1>
 <div class="post-list">
-	<table>
+	<table bordercolor="#ccc" border="1">
 		<tr>
 			<th>
 				№

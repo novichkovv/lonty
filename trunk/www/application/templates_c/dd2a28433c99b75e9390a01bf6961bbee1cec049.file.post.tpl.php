@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 12:54:43
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 23:26:39
          compiled from "Z:\home\lonty.sru\www\application\templates\index\post.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2895353f8e89a88d6c8-27274523%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dd2a28433c99b75e9390a01bf6961bbee1cec049' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\index\\post.tpl',
-      1 => 1408870475,
+      1 => 1408908263,
       2 => 'file',
     ),
   ),
@@ -30,7 +30,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php if ($_valid && !is_callable('content_53f8e89a88e621_75218838')) {function content_53f8e89a88e621_75218838($_smarty_tpl) {?><div class="maincontent">
     <div class="post">
         <h1>
-            <<?php ?>?php echo $post['post_name']; ?<?php ?>>
+            <?php echo $_smarty_tpl->tpl_vars['post']->value[0]['name'];?>
+
         </h1>
         <div class="postInfo">
             <div class="postDate">
@@ -41,12 +42,12 @@ images/main/dateIcon.png" alt="date" title="Дата" />
 
                 <img class="dateIcon" src="<?php echo @constant('SITE_DIR');?>
 images/main/markIcon.png" alt="date" title="Рубрики" />
-                <?php echo $_smarty_tpl->tpl_vars['post']->value[0]['rubrics'];?>
-
+                <span class="rubrics"><?php echo $_smarty_tpl->tpl_vars['post']->value[0]['rubrics'];?>
+</span>
             </div>
         </div><!--postInfo-->
         <div class="postText">
-            <?php echo $_smarty_tpl->tpl_vars['post']->value[0]['name'];?>
+            <?php echo $_smarty_tpl->tpl_vars['post']->value[0]['epilog'];?>
 
         </div>
         <?php  $_smarty_tpl->tpl_vars['passage'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['passage']->_loop = false;
@@ -71,6 +72,10 @@ images/pictures/big/<?php echo $_smarty_tpl->tpl_vars['post']->value[0]['post_id
 
             </div>
         <?php } ?>
+        <div class="postText">
+            <?php echo $_smarty_tpl->tpl_vars['post']->value[0]['prolog'];?>
+
+        </div>
     </div><!--post-->
     <div align="center">
     <script type="text/javascript">

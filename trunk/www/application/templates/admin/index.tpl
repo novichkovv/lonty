@@ -1,10 +1,17 @@
 <div class="admin-panel">
+    <span class="active-link">Панель</span>
 	<a class="button-link" href="{$smarty.const.SITE_DIR}admin/addpost/">
 		Добавить пост
 	</a>
+    <a class="button-link" href="{$smarty.const.SITE_DIR}admin/editpost/">
+        Редатировать пост
+    </a>
 </div>
+<h1>
+    Все посты
+</h1>
 <div class="post-list">
-	<table>
+	<table bordercolor="#ccc" border="1" cellspacing="0">
 		<tr>
 			<th>
 				№
@@ -43,9 +50,9 @@
 	{/foreach}
 	</table>
 </div>
-<h2>Посты без абзацев</h2>
+<h1>Посты без абзацев</h1>
 <div class="post-list">
-	<table>
+	<table bordercolor="#ccc" border="1">
 		<tr>
 			<th>
 				№

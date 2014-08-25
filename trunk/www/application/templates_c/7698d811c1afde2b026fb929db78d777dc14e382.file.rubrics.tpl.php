@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 00:35:23
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 23:26:45
          compiled from "Z:\home\lonty.sru\www\application\templates\index\rubrics.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2924953f8fb0b795429-89169910%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7698d811c1afde2b026fb929db78d777dc14e382' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\index\\rubrics.tpl',
-      1 => 1408826120,
+      1 => 1408908396,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.19',
+  'unifunc' => 'content_53f8fb0baa86b2_98532027',
   'variables' => 
   array (
     'posts' => 0,
@@ -26,8 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'right_posts' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_53f8fb0baa86b2_98532027',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53f8fb0baa86b2_98532027')) {function content_53f8fb0baa86b2_98532027($_smarty_tpl) {?><div class="maincontent">
     <?php  $_smarty_tpl->tpl_vars['post'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['post']->_loop = false;
@@ -55,8 +55,8 @@ images/main/dateIcon.png" alt="date" title="Дата" />
 
                     <img class="dateIcon" src="<?php echo @constant('SITE_DIR');?>
 images/main/markIcon.png" alt="date" title="Рубрики" />
-                    <?php echo $_smarty_tpl->tpl_vars['post']->value['rubrics'];?>
-
+                    <span class="rubrics"><?php echo $_smarty_tpl->tpl_vars['post']->value['rubrics'];?>
+</span>
                 </div>
             </div><!--postInfo-->
             <div class="cutImg">
