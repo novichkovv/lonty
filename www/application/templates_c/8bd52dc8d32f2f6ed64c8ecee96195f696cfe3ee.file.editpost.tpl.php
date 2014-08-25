@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-23 23:09:19
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 23:30:39
          compiled from "Z:\home\lonty.sru\www\application\templates\admin\editpost.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:975553e535d719e118-03907685%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8bd52dc8d32f2f6ed64c8ecee96195f696cfe3ee' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\admin\\editpost.tpl',
-      1 => 1408799759,
+      1 => 1408908635,
       2 => 'file',
     ),
   ),
@@ -33,6 +33,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php if ($_valid && !is_callable('content_53e535d74699b3_91556028')) {function content_53e535d74699b3_91556028($_smarty_tpl) {?><?php if (!$_smarty_tpl->tpl_vars['get']->value[0]) {?>
 <h1 class="header">Не выбран пост</h1>
 <?php } else { ?>
+<div class="admin-panel">
+    <a class="button-link" href="<?php echo @constant('SITE_DIR');?>
+admin/">
+        Панель
+    </a>
+    <a class="button-link" href="<?php echo @constant('SITE_DIR');?>
+admin/addpost/">
+        Добавить пост
+    </a>
+    <span class="active-link">
+        Редактировать пост
+    </span>
+</div>
+    <h1 class="header">Редактировать пост</h1>
 	<div class="form-editable editPost">
 		<input name="temp" id="temp" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['temp']->value;?>
 ">
@@ -120,6 +134,8 @@ images/pictures/big/<?php echo $_smarty_tpl->tpl_vars['posts']->value['post_id']
 			<?php echo $_smarty_tpl->tpl_vars['posts']->value['prolog'];?>
 
 		</div>
+        <div class="delete" id="<?php echo $_smarty_tpl->tpl_vars['passage']->value['passage_id'];?>
+">Х</div>
 	</div>
 <?php }?>
 

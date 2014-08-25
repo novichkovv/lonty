@@ -1,3 +1,14 @@
+<div class="admin-panel">
+    <a class="button-link" href="{$smarty.const.SITE_DIR}admin/">
+        Панель
+    </a>
+    <span class="active-link">
+        Добавить пост
+    </span>
+    <a class="button-link" href="{$smarty.const.SITE_DIR}admin/editpost/">
+        Редактировать пост
+    </a>
+</div>
 <h1 class="header">
 	Создание нового поста
 </h1>

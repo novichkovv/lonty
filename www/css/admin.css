@@ -102,3 +102,36 @@ h1.header {
     box-shadow: 0 0 3px grey;
     width: 300px;
 }
+.admin-panel {
+    margin: 20px;
+    width: 100%;
+}
+.button-link, .active-link {
+    padding: 8px 70px;
+    border-top: 1px solid grey;
+    border-radius: 15px 15px 0 0;
+    font-size: 25px;
+    font-color: #666;
+    text-decoration: none;
+    background-color: #eee;
+}
+.active-link {
+    background: linear-gradient(180deg, #eee, whitesmoke, #fff, #fff);
+    background-color: white;
+}
+.button-link {
+    box-shadow: 0 3px  5px #ccc inset;
+    bordr-bottom: #ccc;
+}
+.post-list {
+    margin: 40px 20px;
+}
+.post-list td{
+    padding: 8px;
+}
+.post-list th {
+    padding: 8px 4px;
+    font-family: Tahoma;
+    font-size: 16px;
+    color: #555;
+}

@@ -1,6 +1,18 @@
 {if !$get[0]}
 <h1 class="header">Не выбран пост</h1>
 {else}
+<div class="admin-panel">
+    <a class="button-link" href="{$smarty.const.SITE_DIR}admin/">
+        Панель
+    </a>
+    <a class="button-link" href="{$smarty.const.SITE_DIR}admin/addpost/">
+        Добавить пост
+    </a>
+    <span class="active-link">
+        Редактировать пост
+    </span>
+</div>
+    <h1 class="header">Редактировать пост</h1>
 	<div class="form-editable editPost">
 		<input name="temp" id="temp" type="hidden" value="{$temp}">
 		<input name="post_id" id="post_id" type="hidden" value="{$get[0]}">
@@ -48,6 +60,7 @@
 		<div class="postText editable" action="posts" key="{$get[0]}" data-type="textarea" name="posts[post_prolog]"  style="margin: 40px 100px;">
 			{$posts.prolog}
 		</div>
+        <div class="delete" id="{$passage.passage_id}">Х</div>
 	</div>
 {/if}
 {literal}

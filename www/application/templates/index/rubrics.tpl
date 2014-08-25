@@ -11,7 +11,7 @@
                     <img class="dateIcon" src="{$smarty.const.SITE_DIR}images/main/dateIcon.png" alt="date" title="Дата" />
                     {$post.day} {$post.month}
                     <img class="dateIcon" src="{$smarty.const.SITE_DIR}images/main/markIcon.png" alt="date" title="Рубрики" />
-                    {$post.rubrics}
+                    <span class="rubrics">{$post.rubrics}</span>
                 </div>
             </div><!--postInfo-->
             <div class="cutImg">
