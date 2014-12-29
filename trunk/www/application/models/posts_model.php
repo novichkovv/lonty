@@ -28,7 +28,7 @@ class posts_model extends Model
                     rubrics r
                     ON r.rubric_id=pr.rubric_id
                 GROUP BY p.post_id
-                ORDER BY p.post_date
+                ORDER BY p.post_date DESC
                 LIMIT '.$limit_start.', '.$limit.'
 			 	';
 		$row=$this->getAll($query, true);

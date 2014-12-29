@@ -20,7 +20,7 @@
             </a>
         </div>
         <div class="postText">
-            {$post.post_epilog}
+            {$post.post_epilog|truncate:300}
         </div>
         <div class="readMore">
             <a href="{$smarty.const.SITE_DIR}index/post/{$post.post_id}">Читать дальше...</a>
