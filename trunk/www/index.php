@@ -1,6 +1,4 @@
 <?php
-echo date('Y-m-d H:i:s');
-exit;
 //error_reporting (E_ALL);
 error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 include (realpath($_SERVER['DOCUMENT_ROOT']).DIRECTORY_SEPARATOR. 'application'.DIRECTORY_SEPARATOR.'core'.DIRECTORY_SEPARATOR.'Config.php');
