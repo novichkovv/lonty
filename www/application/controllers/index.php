@@ -9,7 +9,7 @@ class index_Controller extends Controller
          * Алгоритм пагинатора
          */
 		(isset($args[0]))?$page=$args[0]:$page=1;
-        $limit = 2;
+        $limit = 10;
 
         $post_model=new posts_model;
         $count_posts = $post_model->countPosts();
@@ -95,7 +95,7 @@ class index_Controller extends Controller
 		/*
          * Алгоритм пагинатора
          */
-        $limit = 2;
+        $limit = 10;
 
         $count_posts = $posts_model->countRubricPosts($rubric);
         $limit_start = $page*$limit-$limit;

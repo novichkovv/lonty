@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-08-24 23:25:16
+<?php /* Smarty version Smarty-3.1.19, created on 2014-08-25 20:07:33
          compiled from "Z:\home\lonty.sru\www\application\templates\index\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1832953f89b357a3c88-92715620%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd4ac8d4c81b1e87a7d00d3e56d6d4d49b901a43b' => 
     array (
       0 => 'Z:\\home\\lonty.sru\\www\\application\\templates\\index\\index.tpl',
-      1 => 1408908314,
+      1 => 1408982850,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53f89b35b2c841_92026077')) {function content_53f89b35b2c841_92026077($_smarty_tpl) {?><div class="maincontent">
+<?php if ($_valid && !is_callable('content_53f89b35b2c841_92026077')) {function content_53f89b35b2c841_92026077($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_truncate')) include 'Z:\\home\\lonty.sru\\www\\libs\\Smarty\\libs\\plugins\\modifier.truncate.php';
+?><div class="maincontent">
 <?php  $_smarty_tpl->tpl_vars['post'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['post']->_loop = false;
  $_smarty_tpl->tpl_vars['post_id'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['posts']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -69,7 +70,7 @@ images/pictures/bigCut/<?php echo $_smarty_tpl->tpl_vars['post']->value['post_id
             </a>
         </div>
         <div class="postText">
-            <?php echo $_smarty_tpl->tpl_vars['post']->value['post_epilog'];?>
+            <?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['post']->value['post_epilog'],300);?>
 
         </div>
         <div class="readMore">
