@@ -17,8 +17,8 @@ class Model
     {
         mysql_connect(DB_HOST, DB_USER, DB_PASS) or die ("не могу создать соединение");
         mysql_select_db('u191001322_'.$db) or die (mysql_error());
-        mysql_query("set character_set_client='utf-8'");
-        mysql_query("set character_set_results='utf-8'");
+        mysql_query("set character_set_client='utf8'");
+        mysql_query("set character_set_results='utf8'");
         mysql_query("set collation_connection='utf8_general_ci'");
     }
     public function mysqlError($error='')

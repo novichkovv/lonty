@@ -20,6 +20,7 @@ function my_autoloader($className)
 
 	            case 'model':
 	                $folder = 'models';
+			$filename = $className . '.php';
 	                break;
 
                 case 'ext':
@@ -37,6 +38,7 @@ function my_autoloader($className)
     // путь до класса
     $file = SITE_PATH . DS . 'application' . DS . $folder . DS . $filename;
     // проверяем наличие файла
+	
     if (file_exists($file) == false) {
         return false;
     }
