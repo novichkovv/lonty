@@ -1,24 +1,4 @@
-<IfModule mod_rewrite.c>
-ghdtjyul
-RewriteEngine On
-RewriteBase /
+RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-##RewriteRule ^admin/$ detox/admin.php [L]
-##RewriteRule ^success/?$ detox/success.html [L]
-##RewriteRule ^reserve/?$ detox/reserve.php [L]
-##RewriteRule ^mailer/?$ detox/mailer.php [L]
-RewriteRule ^index\.php$ - [L]
-#RewriteRule ^$ detox/index.php [L]
-#RewriteRule ^success/$ detox/success.hrml [L]
-RewriteRule . index.php [L]
-#</IfModule>
-##
-#<IfModule rewrite_module>
-#	RewriteEngine On
-#	RewriteBase /
-#	RewriteCond %{QUERY_STRING} (^|\?|&)s2member_file_download\=.+ [OR]
-#	RewriteCond %{QUERY_STRING} (^|\?|&)no-gzip\=1
-#	RewriteRule .* - [E=no-gzip:1]
-#</IfModule>
-#
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
