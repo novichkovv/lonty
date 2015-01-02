@@ -1,16 +1,16 @@
-#<IfModule mod_rewrite.c>
-#RewriteEngine On
-#RewriteBase /
-##RewriteCond %{REQUEST_FILENAME} !-f
-##RewriteCond %{REQUEST_FILENAME} !-d
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 ##RewriteRule ^admin/$ detox/admin.php [L]
 ##RewriteRule ^success/?$ detox/success.html [L]
 ##RewriteRule ^reserve/?$ detox/reserve.php [L]
 ##RewriteRule ^mailer/?$ detox/mailer.php [L]
-##RewriteRule ^index\.php$ detox/index.php [L]
+RewriteRule ^index\.php$ - [L]
 #RewriteRule ^$ detox/index.php [L]
 #RewriteRule ^success/$ detox/success.hrml [L]
-#RewriteRule ^(.*)/$ detox/$1.php [L]
+RewriteRule . index.php [L]
 #</IfModule>
 ##
 #<IfModule rewrite_module>
