@@ -1,23 +1,0 @@
-.editable-form {	min-width: 300px;
-	border: 2px solid grey;
-	padding: 10px;
-	box-shadow: 3px 0px 4px grey;
-	position: relative;
-	top: -20px;
-	left: 10px;
-	z-index: 999;
-	background-color: #fff;
-	opacity: 0.98;	}
-.node-textarea {	width: 500px;
-	height: 200px;	}
-.editable {
-	cursor: pointer;
-	}
-.editable:hover {
-	cursor: pointer;
-	box-shadow: 0 0 3px #eee;
-	}
-.editable-data {	min-width: 100px;
-	text-align: center;
-	display: none;
-	}
