@@ -84,3 +84,7 @@
 .image-left img {
     width: 100%;
 }
+#header_image {
+    width: 100%;
+    margin-bottom: 30px;
+}

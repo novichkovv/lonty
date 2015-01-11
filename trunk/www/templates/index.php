@@ -17,58 +17,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-        After 25 years of research, Don Colbert  MD finds answers to restoring your youth.
+        Dr Colbert's Change Your Health in 21 Days
     </title>
     <link rel="shortcut icon" href="<?php echo SITE_DIR; ?>images/favicon.png" />
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?php echo SITE_DIR; ?>">3rsystem.com</a>
-        </div>
-        <div class="navbar-collapse collapse">
-
-        </div><!--/.navbar-collapse -->
-    </div>
-</div>
-
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="row" id="header_row">
-            <div class="col-sm-8">
-                <h1 id="title">After 25 years of research, Don Colbert  MD finds answers to restoring your youth.</h1>
-                <div id="subtitle">Breakthrough New System referred as the 3 R's</div>
-            </div>
-            <div class="col-sm-4">
-                <div class="text-right">
-                    <img src="<?php echo SITE_DIR; ?>images/drcolbert.jpg" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<img id="header_image" src="<?php echo SITE_DIR; ?>images/header.png" alt="header"/>
 <div id="content">
     <div class="container">
         <div class="container" id="main-container">
             <div id="iframe" class="col-xs-12">
-                <video loop controls src="images/video.mp4" type="video/mp4" autoplay="autoplay" style="width: 100%;"></video>
+                <video loop controls src="images/video.mp4" type="video/mp4" autoplay="autoplay" style="width: 100%;">
+                    <iframe id="iframe" style="width: 100%;" src="//www.youtube.com/embed/ECKB7Rfg2GE?autoplay=1&modestbranding=1" frameborder="0" allowfullscreen ></iframe>
+                </video>
             </div>
 
-            <!--        <iframe id="iframe" width="640" height="390" src="//www.youtube.com/embed/ECKB7Rfg2GE?autoplay=1&modestbranding=1" frameborder="0" allowfullscreen ></iframe>-->
         </div>
         <a href="<?php echo SITE_DIR; ?>pages.php"><img src="<?php echo SITE_DIR; ?>images/arrowbutton.png" id="next_page_btn"/></a>
         <footer>
-            <p>&copy; Company 2014</p>
+            <p><a href="http://drcolbert.com">&copy; Divine Health inc. 2015</a></p>
         </footer>
-    </div> <!-- /container -->
+    </div>
 </div>
 
 <!-- Yandex.Metrika counter -->

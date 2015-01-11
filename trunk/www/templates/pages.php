@@ -1,19 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: novichkov
- * Date: 10.01.15
- * Time: 17:25
- */
-?>
-<?php
-/**
- * Created by PhpStorm.
- * User: novichkov
- * Date: 13.12.14
- * Time: 1:59
- */
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,44 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-        After 25 years of research, Don Colbert  MD finds answers to restoring your youth.
+        Dr Colbert's Change Your Health in 21 Days
     </title>
     <link rel="shortcut icon" href="<?php echo SITE_DIR; ?>images/favicon.png" />
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?php echo SITE_DIR; ?>">3rsystem.com</a>
-        </div>
-        <div class="navbar-collapse collapse">
-
-        </div><!--/.navbar-collapse -->
-    </div>
-</div>
-
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="row" id="header_row">
-            <div class="col-sm-8">
-                <h1 id="title">After 25 years of research, Don Colbert  MD finds answers to restoring your youth.</h1>
-                <div id="subtitle">Breakthrough New System referred as the 3 R's</div>
-            </div>
-            <div class="col-sm-4">
-                <div class="text-right">
-                    <img src="<?php echo SITE_DIR; ?>images/drcolbert.jpg" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<a href="<?php echo SITE_DIR; ?>"><img id="header_image" src="<?php echo SITE_DIR; ?>images/header.png" alt="header"/></a>
 <div id="content">
     <div class="container">
         <div class="container" id="main-container">
@@ -77,7 +29,7 @@
         </div>
         <a href="<?php echo SITE_DIR; ?>pages.php"><img src="<?php echo SITE_DIR; ?>images/arrowbutton.png" id="next_page_btn"/></a>
         <footer>
-            <p>&copy; Company 2014</p>
+            <p><a href="http://drcolbert.com">&copy; Divine Health inc. 2015</a></p>
         </footer>
     </div> 
 </div>
