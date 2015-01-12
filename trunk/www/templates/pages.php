@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="<?php echo SITE_DIR; ?>images/favicon.png" />
 </head>
 <body>
-<a href="<?php echo SITE_DIR; ?>"><img id="header_image" src="<?php echo SITE_DIR; ?>images/header.png" alt="header"/></a>
+<a href="<?php echo SITE_DIR; ?>"><img id="header_image" src="<?php echo SITE_DIR; ?>images/header2.jpg" alt="header"/></a>
 <div id="content">
     <div class="container">
         <div class="container" id="main-container">
