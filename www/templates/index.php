@@ -22,13 +22,13 @@
     <link rel="shortcut icon" href="<?php echo SITE_DIR; ?>images/favicon.png" />
 </head>
 <body>
-<img id="header_image" src="<?php echo SITE_DIR; ?>images/header.png" alt="header"/>
+<img id="header_image" src="<?php echo SITE_DIR; ?>images/header2.jpg" alt="header"/>
 <div id="content">
     <div class="container">
         <div class="container" id="main-container">
             <div id="iframe" class="col-xs-12">
                 <video loop controls src="images/video.mp4" type="video/mp4" autoplay="autoplay" style="width: 100%;">
-                    <iframe id="iframe" style="width: 100%;" src="//www.youtube.com/embed/ECKB7Rfg2GE?autoplay=1&modestbranding=1" frameborder="0" allowfullscreen ></iframe>
+                    <iframe style="width: 100%;" src="//www.youtube.com/embed/ECKB7Rfg2GE?modestbranding=1" frameborder="0" allowfullscreen ></iframe>
                 </video>
             </div>
 
