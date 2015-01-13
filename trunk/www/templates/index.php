@@ -27,13 +27,13 @@
     <div class="container">
         <div class="container" id="main-container">
             <div id="iframe" class="col-xs-12">
-                <video loop controls src="images/video.mp4" type="video/mp4" autoplay="autoplay" style="width: 100%;">
+                <video controls src="images/video.mp4" type="video/mp4" autoplay="autoplay" style="width: 100%;">
                     <iframe style="width: 100%;" src="//www.youtube.com/embed/ECKB7Rfg2GE?modestbranding=1" frameborder="0" allowfullscreen ></iframe>
                 </video>
             </div>
 
         </div>
-        <a href="<?php echo SITE_DIR; ?>pages.php"><img src="<?php echo SITE_DIR; ?>images/arrowbutton.png" id="next_page_btn"/></a>
+        <a href="<?php echo SITE_DIR; ?>pages.php"><img src="<?php echo SITE_DIR; ?>images/button2.png" id="next_page_btn"/></a>
         <footer>
             <p><a href="http://drcolbert.com">&copy; Divine Health inc. 2015</a></p>
         </footer>
