@@ -26,7 +26,7 @@
         $dir = opendir(ROOT_DIR . 'templates' . DS . 'pages' . DS);
         $count = 0;
         while($file = readdir($dir)){
-            if($file == '.' || $file == '..' || is_dir('path/to/dir' . $file)){
+            if($file == '.' || $file == '..' || $file == '.svn' || is_dir('path/to/dir' . $file)){
                 continue;
             }
             $count++;
