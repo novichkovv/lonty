@@ -1,0 +1,5 @@
+<h2>About Dr. Don Colbert
+</h2>
+<p>Dr. Don Colbert, M.D. has been board certified in Family Practice for over 25 years and practices <b>anti-aging</b> and <b>integrative</b> medicine. He is a New York Times Bestselling author of books such as The Bible Cure Series, What Would Jesus Eat, Deadly Emotions, What You Don't Know May be Killing You, and many more with over 10 million books sold. He is the Medical Director of the Divine Health Wellness Center in Orlando, Florida where he has treated over 50,000 patients. He is also a internationally known expert and prolific speaker on Integrative Medicine.
+</p>
+<p>Dr. Colbert is on the Medical Advisory Board for the Fellowship of Christian Athletes. He has been featured on Dr. Oz, The O'Reilly Factor, ABC World News, BBC, Readers Digest, News Week, Prevention Magazine and many prominent Christian TV programs. He is also the TV host of his newly syndicated TV program "Dr Colbert’s Health Report." Dr. Colbert formulated Divine Health to meet the public's demand for higher quality supplementation. Dr. Colbert believes in treating the whole person; the mind, the body and the spirit. </p>
