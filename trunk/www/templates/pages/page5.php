@@ -1,0 +1,3 @@
+<h2>Ask, and it will be given to you.</h2>
+<p>Since your organs play a vital role in your body functioning at 100% health, don’t you think you should do your best and provide them with the proper fuel to function at their best in return?  There is a simple way to do this, that is not complicated in any way, and has the possibility of changing your health for the rest of your life. Anyone can follow the easy and affective 3Rs System, discovered by me. Comprising of 3 easy steps: remove, replace, and rotate. This is all that is required to start shedding those invisible, bad toxins in your body, which in turn, helps to keep you healthy and feel your best.
+</p>

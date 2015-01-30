@@ -3,7 +3,7 @@
     max-width: 970px;
     margin: 0 auto;
     box-shadow:  0 0 8px;
-    min-height: 500px;
+    min-height: 300px;
     background-color: #ffffff;
 }
 #title {
@@ -66,7 +66,7 @@
     background-color: #ffffff;
 }
 #article {
-    padding: 30px;
+    padding: 30px 30px 70px 30px;
 }
 .image-left {
     border: 1px solid #dcdcdc;
@@ -87,4 +87,19 @@
 #header_image {
     width: 100%;
     margin-bottom: 30px;
+}
+#article b {
+    color: #c0b768;
+}
+#article p {
+    text-indent: 30px;
+}
+#article h2 {
+    margin: 40px;
+}
+footer {
+    background-color: #245269;
+    color: #ffffff;
+    padding: 20px;
+    margin: 0;
 }
