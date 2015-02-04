@@ -1,4 +1,0 @@
-<h2>Will the 3Rs System work on me?
-</h2>
-<p>I’ve heard this countless times before, “Just because something works on you, doesn’t mean it will work on me, right?” Yes it will. This is because the 3Rs System does not involve some unnecessary medical model that proposes the customization of healthcare, with medical products being tailored to you for effectiveness. It does not involve personalized medications that require your medical history. In fact, it does not involve any medications or products at all. They are simply steps, along with advice, that are designed to improve a number of your body’s systems and functions. <b>That’s all! No fuss, no mess!</b>
-</p>
