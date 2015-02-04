@@ -1,4 +1,1 @@
-<h2>Is there something wrong with me?
-</h2>
-<p>It is only normal to question yourself in reference to your health and overall well-being when you do not feel like you are functioning 100%, even if it happens irregularly. Because of this unwanted feeling that is possibly hindering you from loving, laughing, and living freely and fully, you are determined to find out the root cause of the problem. Well, here is where you can stop seeking, and start to learn and get the answers. Keep reading ahead because I will be informing you as to why you are feeling these symptoms.  Moreover, I provide you with a definite solution.
-</p>
+<img src="<?php echo SITE_DIR; ?>images/cdcopy.jpg" />
