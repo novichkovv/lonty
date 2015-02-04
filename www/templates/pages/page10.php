@@ -1,7 +1,0 @@
-<h2>The 3R story is a story of affirmation and encouragement.
-</h2>
-<p>Before I had discovered the 3Rs System and made it my goal to promote it all over the world, I was struck with the terrible diseases of IBS and Psoriasis. I could not find any answers for my symptoms. I had tried every known method to find a cure using supplements, pills, prescription medication, and even herbal drinks. Nothing was working. In fact, I was even feeling worse than before due to the side effects of the medication, which were causing me nausea, constipation, diarrhea, and drowsiness. This was also followed by a loss of appetite and low-energy. I was determined to return to a normal, healthy life. After much research, I began taking matters into my own hands, and started to try to find a cure for the diseases, not just treat the symptoms.
-</p>
-<p>
-    As I was going through some key data while writing my first book, I stumbled across the secret to restoring my health, which I now refer to as the 3Rs System. The more that I learned about it, the more intrigue I was. The best part was that the 3Rs System was completely safe and natural, not to mention effective, as it had completely rid me of my diseases within a very short period of time from implementing it. There’s absolutely no reason why you shouldn’t start this system today too!
-</p>

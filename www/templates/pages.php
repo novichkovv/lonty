@@ -23,14 +23,16 @@
             </div>
         </div>
         <?php
-        $dir = opendir(ROOT_DIR . 'templates' . DS . 'pages' . DS);
-        $count = 0;
-        while($file = readdir($dir)){
-            if($file == '.' || $file == '..' || $file == '.svn' || is_dir('path/to/dir' . $file)){
-                continue;
-            }
-            $count++;
-        }
+//        $dir = opendir(ROOT_DIR . 'templates' . DS . 'pages' . DS);
+//        $count = 0;
+//        while($file = readdir($dir))
+//        {
+//            if($file == '.' || $file == '..' || $file == '.svn' || is_dir('path/to/dir' . $file))
+//            {
+//                continue;
+//            }
+//            $count++;
+//        }
         ?>
         <?php if($_GET['page'] < 2)://$count > $_GET['page']): ?>
         <a href="<?php echo SITE_DIR; ?>pages.php?page=<?php echo ($_GET['page'] + 1); ?>"><img src="<?php echo SITE_DIR; ?>images/arrowbutton.png" id="next_page_btn"/></a>

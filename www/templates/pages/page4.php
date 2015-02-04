@@ -1,7 +1,0 @@
-<h2>What are toxins and why are they harmful to your health?
-</h2>
-<p>
-    Though the word toxin is always thought to be bad, however, not many understand why exactly it is. Most people don't understand what toxins are, and how they can accumulate in your body. High levels of toxins can cause stress on your body systems, disease, and make your body seem sluggish and full of complications. The basic definition of a toxin is a chemical or poison that is known to have harmful effects on the body. It is in everything that you consume and it can originate from a variety of sources, such as medicines, personal grooming products, cleaning products, air, light, and even noise. You cannot avoid it, and it can be almost everywhere you go, and everything you consume can expose you to toxins.
-</p>
-<p>Thankfully, toxins that are accumulated in your body have a way of being flushed out of your system via vital organs, such as the liver, kidneys, and colon in the form of sweat, urine, and feces.  Though these organs do an excellent job, not all toxins are removed, and it is these excess toxins that are accumulating in your body that are said to be the primary cause that weakens your nervous system, immune system, and cellular respiration; leading your seemingly healthy self to poor health.
-</p>
