@@ -32,10 +32,10 @@
             $count++;
         }
         ?>
-        <?php if($count > $_GET['page']): ?>
+        <?php if($_GET['page'] < 2)://$count > $_GET['page']): ?>
         <a href="<?php echo SITE_DIR; ?>pages.php?page=<?php echo ($_GET['page'] + 1); ?>"><img src="<?php echo SITE_DIR; ?>images/arrowbutton.png" id="next_page_btn"/></a>
         <?php endif; ?>
-        <?php if($count >= $_GET['page']): ?>
+        <?php if($_GET['page'] >= 2)://if($count >= $_GET['page']): ?>
             <br /><br />
         <?php endif; ?>
 
