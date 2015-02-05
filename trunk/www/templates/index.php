@@ -34,10 +34,12 @@
 
         </div>
         <a href="<?php echo SITE_DIR; ?>pages.php?page=1"><img src="<?php echo SITE_DIR; ?>images/button2.png" id="next_page_btn"/></a>
-        <footer>
-            <p><a href="http://drcolbert.com">&copy; Divine Health inc. 2015</a></p>
+
     </div>
 </div>
+<footer>
+    <p><a href="http://drcolbert.com">&copy; Divine Health inc. 2015</a></p>
+</footer>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
