@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo SITE_DIR; ?>css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo SITE_DIR; ?>css/style.css">
     <script type="text/javascript" src="<?php echo SITE_DIR; ?>js/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo SITE_DIR; ?>js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo SITE_DIR; ?>js/script.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
