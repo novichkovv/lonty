@@ -1,4 +1,6 @@
-
+img {
+    max-width: 100%;
+}
 #main-container {
     max-width: 970px;
     margin: 0 auto;
@@ -136,7 +138,7 @@ footer {
     text-shadow: 1px 1px 5px black;
 }
 #popup_content {
-    padding: 40px;
+    padding: 40px 10px;
 }
 .image-button {
     border: none;
@@ -146,3 +148,4 @@ footer {
     max-width: 80%;
     width:300px;
 }
+
