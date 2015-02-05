@@ -103,3 +103,46 @@ footer {
     padding: 20px;
     margin: 0;
 }
+#cards_payment {
+    background-image: url('../images/payment.png');
+    background-position: 345px 37px;
+    width: 252px;
+    height: 36px;
+    max-width: 100%;
+}
+#paypal_payment {
+    background-image: url('../images/payment.png');
+    background-position: -1px -8px;
+    width: 56px;
+    height: 33px;
+}
+#pay_now_button {
+    border: 0;
+    background: none;
+}
+#pay_now_button img {
+    width: 250px;
+}
+.modal-content {
+    border-radius: 0 !important;
+    background-image: url('../images/bg-blue.jpg');
+}
+.modal-header {
+    border-bottom: 0 !important;
+}
+#popup_title {
+    font-size: 35px;
+    color: white;
+    text-shadow: 1px 1px 5px black;
+}
+#popup_content {
+    padding: 40px;
+}
+.image-button {
+    border: none;
+    background: 0;
+}
+.image-button img {
+    max-width: 80%;
+    width:300px;
+}
