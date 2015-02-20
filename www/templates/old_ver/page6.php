@@ -1,0 +1,3 @@
+<h2>Introducing the 3Rs System: Remove, restore, and rotate</h2>
+<p>Do you think this sounds like a recycling program more than a health program? Sounds easy, perhaps a little too easy? How has this not been taught before now? I can assure you that the 3Rs System has been tested and proven to work not on hundreds, but on thousands of patients that have come through my office. People like you, who are looking for answers because they are suffering from a variety of ailments. When was the last time you woke up and felt amazing? People like you are initially skeptical, but they have been turned to believers and advocates because it simply works.
+</p>

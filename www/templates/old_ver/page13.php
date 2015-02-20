@@ -1,0 +1,4 @@
+<h2>A Real Answer to Restoring Your Health
+</h2>
+<p>The 3Rs System is simply a system that helps you <strong>remove</strong> bad habits from your life that are hindering your health, <strong>replace</strong> those habits with very unique habits, and <strong>rotate</strong> them according to my system. It is said that habits turn into learned behaviors, and any bad habit affecting your health will <b>therefore be</b> bad for you in the long run. Well, the time is now to put a stop to this once and for all and let good habits take over. Let good health prevail instead. Start making a change in your life because you deserve to it. You have a right to live the abundant life that you are entitled to!
+</p>
