@@ -61,25 +61,14 @@
                   text-align: center;
                 ">Lose Weight & Burn Fat Fast</h3>
             <h4 style="color: #fff; text-transform: uppercase; font-size: 30px; text-shadow: 0 0 2px #ccc;">Available today for almost 50% OFF</h4>
-<!--            <table> <td style="text-transform: uppercase; text-align: center;">-->
-                    <!--                       <div style="color: #ff2b6f; font-size: 25px;">Available</div>-->
-                    <!--                        <div style="color: #a95aff;  font-size: 35px;">today</div>-->
-                    <!--                        for <br>almost <br>-->
-                    <!--                        <div style="font-size: 40px; color: #cc556d; font-weight: bold;">50% OFF</div>-->
-                    <!--                    </td>
-                                    <tr>
-                    <!--                   -->
-<!--                    <td style=" width: 100%; min-height: 1px;">-->
-
-                            <img src="images/video-garcinia.png" style="width: 80%; box-shadow: 0 0 8px grey; margin: 0 auto;"/>
-
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            </table>-->
-                <div style="text-align: left; color: #fff; font-size: 18px; padding: 40px 10px; ">
-                    Why Are Scientists And Media Excited About Garcinia Cambogia
+                            <a href="http://getyourgarcinia.com/"><img src="images/video-garcinia.png" style="width: 80%; box-shadow: 0 0 8px grey; margin: 0 auto;"/></a>
+                <div style="text-align: left; color: #333; font-size: 22px; padding: 40px 70px; ">
+                    <b><h4 style="color: black;">Why Are Scientists And Media Excited About Garcinia Cambogia</h4></b>
                     Mother Nature's super fruit is finally here! Garcinia Cambogia is a pumpkin shaped fruit that is grown in Southeast Asia and India and is a revolutionary supplement breakthrough!
                 </div>
+                <div style="color: #635aee; font-weight: bold; font-size: 35px; text-transform: uppercase; font-family: Arial;">Click <a style="color: #9627ee;" href="http://getyourgarcinia.com/">Play</a> to Learn about Garcinia Cambogia 75% HCA</div>
+
+                <div style="margin: 50px auto;"><a href="http://getyourgarcinia.com/">Click Here</a> to unsubscribe</div>
         </div>
     </body>
 </html>
