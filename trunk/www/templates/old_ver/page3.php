@@ -1,0 +1,2 @@
+<h2>You cannot beat what you can’t see.</h2>
+<p>Believe it not, the reason why you are suffering from an array of hindering ailments is largely due to substances that are accumulated in your body’s internal cells, known as toxins, by simply eating, breathing, and drinking. Regardless of whether you think you are eating the right food, practicing wellness techniques, and maintaining your stress levels, toxins will eventually find their way to build up in your body and pose a risk to your health. </p>
