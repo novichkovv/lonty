@@ -10,7 +10,7 @@
     <head>
         <title>Email</title>
     </head>
-    <body style="background: url('/images/bg.png') #E7A7E2 no-repeat center;">
+    <body style="background: url('images/bg.png') #E7A7E2 no-repeat center;">
         <div style="width: 700px; margin: auto;">
             <div style="
             color: white;
