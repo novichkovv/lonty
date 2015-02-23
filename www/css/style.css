@@ -162,7 +162,7 @@ footer {
     font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
     font-style: italic;
     font-size: 30px;
-    text-shadow: 1px 1px 0 #ffffff;
+    text-shadow: 3px 3px 3px #E9E9E9;
     margin: 10px;
 }
 #yes_i_want_subtitle {
