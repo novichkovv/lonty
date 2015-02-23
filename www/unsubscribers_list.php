@@ -66,11 +66,11 @@ if($_SESSION['login'] == 'admin')
     $unsubscribers = $model->getAll('udate DESC');
     if(isset($_POST['export']))
     {
-        $string = 'firstname;email;date' . "\n";
+        $string = 'id;email;date' . "\n";
 
         foreach($unsubscribers as $row)
         {
-            $string .= $row['email'] . ';' . date('Y-m-d H:i', strtotime($row['udate'])) . "\n";
+            $string .= $row['id'] . ';' . $row['email'] . ';' . date('Y-m-d H:i', strtotime($row['udate'])) . "\n";
 
         }
         header('Content-type:application/csv');
