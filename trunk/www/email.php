@@ -5,6 +5,17 @@
  * Date: 20.02.15
  * Time: 18:40
  */
+if(isset($_POST['unsubscribe_btn']))
+{
+    require_once('model.php');
+    $row = [];
+    $row['email'] = $_POST['email'];
+    $row['udate'] = date('Y-m-d H:i:s');
+    $model = new model('unsubscribers');
+    $model->insert($row);
+    header('Location: ?success');
+}
+
 ?>
 <html>
     <head>
@@ -32,7 +43,7 @@
         ">
                 <div style="clear: both; border: 1px solid #f6a1ff;">
                     <img src="images/logo-garcinia.png" style="float: left;" />
-                    <div style="margin: 39px 0 30px 177px"> New! Top Selling Fat-Melting Product</div>
+                    <div style="margin: 39px 0 30px 177px; text-align: center;">&NonBreakingSpace;</div>
                 </div>
 
             </div>
@@ -59,16 +70,19 @@
                   text-shadow: 0 0 2px #ffffff;
                   margin-top: 0;
                   text-align: center;
-                ">Lose Weight & Burn Fat Fast</h3>
-            <h4 style="color: #fff; text-transform: uppercase; font-size: 30px; text-shadow: 0 0 2px #ccc;">Available today for almost 50% OFF</h4>
-                            <a href="http://getyourgarcinia.com/"><img src="images/video-garcinia.png" style="width: 80%; box-shadow: 0 0 8px grey; margin: 0 auto;"/></a>
-                <div style="text-align: left; color: #333; font-size: 22px; padding: 40px 70px; ">
-                    <b><h4 style="color: black;">Why Are Scientists And Media Excited About Garcinia Cambogia</h4></b>
-                    Mother Nature's super fruit is finally here! Garcinia Cambogia is a pumpkin shaped fruit that is grown in Southeast Asia and India and is a revolutionary supplement breakthrough!
-                </div>
-                <div style="color: #635aee; font-weight: bold; font-size: 35px; text-transform: uppercase; font-family: Arial;">Click <a style="color: #9627ee;" href="http://getyourgarcinia.com/">Play</a> to Learn about Garcinia Cambogia 75% HCA</div>
-
-                <div style="margin: 50px auto;"><a href="http://getyourgarcinia.com/">Click Here</a> to unsubscribe</div>
+                "><?php echo !isset($_GET['success']) ? 'To unsubscribe to Trim-RX newsletters enter email below' : 'You have successfully unscubscribed'; ?></h3>
+            <?php if(!isset($_GET['success'])): ?>
+            <form method="post">
+                <input type="email" name="email" style="width: 200px; height: 30px;" placeholder="Email here.."><br /><br />
+                <input type="submit" name="unsubscribe_btn" style="
+            border: none;
+            padding: 9px 25px;
+            color: #fff;
+            background-color: #cf43a3;
+            border-radius: 5px;
+            ">
+            </form>
+            <?php endif; ?>
         </div>
     </body>
 </html>
