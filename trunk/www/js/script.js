@@ -8,13 +8,7 @@ $(document).ready(function()
     /////////////// On Leave page ///////////////
     /////////////////////////////////////////////
 
-    $(function()
-    {
-        if(typeof window.obUnloader != 'object')
-        {
-            window.obUnloader = new Unloader();
-        }
-    });
+
 
     ///////////////////////////////////////////////////
     //////////////////////  popup /////////////////////
@@ -22,17 +16,12 @@ $(document).ready(function()
 
     $(function()
     {
-        setTimeout(function()
-        {
-            $("#pop_up").modal('show');
-        }, 3000);
         if(getRandomInt(1, 2) == 1)
         {
             setTimeout(function()
             {
                 $("#pop_up").modal('show');
             }, 3000);
-
         }
     });
 });
@@ -43,7 +32,7 @@ function Unloader(){
 
     this.unload = function(evt)
     {
-        var message = "//I need content here";
+        var message = "Are You Sure You Don't Want to Reboot Your Health?";
         if (typeof evt == "undefined") {
             evt = window.event;
         }

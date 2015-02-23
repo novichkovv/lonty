@@ -148,4 +148,73 @@ footer {
     max-width: 80%;
     width:300px;
 }
+#yes_i_want {
+    margin: 60px 0;
+    padding: 40px;
+    background: linear-gradient(0deg, #eee, #f5f5f5, #fafafa, #ffffff);
+    font-size: 17px;
+}
+#yes_i_want_title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #a84a4d;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+    font-style: italic;
+    font-size: 30px;
+    text-shadow: 1px 1px 0 #ffffff;
+    margin: 10px;
+}
+#yes_i_want_subtitle {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: justify;
+    margin: 10px;
+}
+#over_21 {
+    color: #8cbdff;
+    font-size: 25px;
+    text-shadow: 3px 3px 3px #ccc;
+}
+#payment_area {
+    border: 2px dashed #1985ee;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 30px;
+    background-color: #ffffff;
+    box-shadow:  0 0 15px #fff;
+}
+#price {
+    font-size: 40px;
+    margin: 30px;
+    text-align: center;
+}
+#get_access_button {
+    border: none;
+    background-color: #e50000;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 7px;
+    padding: 12px 40px;
+    text-decoration: none;
+}
+#payment_methods {
+    margin: 20px auto;
+    max-width: 350px;
+}
+.payment_method {
+    float: left;
+    background: url('../images/payment_method_full.png');
+    width: 70px;
+    height: 55px;
+}
+#any_questions_title {
+    font-size: 35px;
+    margin: 20px;
+}
+#any_questions {
+    font-size: 20px;
+    text-align: center;
+}
 

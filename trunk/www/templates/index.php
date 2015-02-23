@@ -67,6 +67,15 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="//mc.yandex.ru/watch/25978993" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script type="text/javascript">
+    $(function()
+    {
+        if(typeof window.obUnloader != 'object')
+        {
+            window.obUnloader = new Unloader();
+        }
+    });
+</script>
 <!-- /Yandex.Metrika counter -->
 </body>
 </html>
